@@ -2,7 +2,20 @@
 
 > nooblog IHM
 
-## Build Setup
+## List dependencies
+
+npm install vuetify --save
+
+npm install --save material-design-icons-iconfont
+
+npm install --save style-loader
+
+npm install --save css-loader
+
+npm install --save sass-loader
+
+npm install --save node-sass
+### Build Setup
 
 ``` bash
 # install dependencies
