@@ -80,10 +80,18 @@
         </a>
       </li>
     </ul>
+    <v-btn
+      color="secondary"
+      :loading="loading"
+      @click.native="loader = 'loading'"
+      :disabled="loading">
+      Accept Terms
+    </v-btn>
   </div>
 </template>
 
 <script>
+import '../theme/index'
 export default {
   name: 'HelloWorld',
   data () {
