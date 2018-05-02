@@ -4,7 +4,7 @@
 *
 */
 export default Object.assign({
-  primary: '#2ffa7df',
+  primary: '#000',
   secondary: '#b0bec5',
   accent: '#0277bd',
   info: '#80d8ff',
