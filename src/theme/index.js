@@ -3,7 +3,7 @@
 *
 *
 */
-export default Object.assign({
+export default ({
   primary: '#2ffa7df',
   secondary: '#b0bec5',
   accent: '#0277bd',
