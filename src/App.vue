@@ -26,7 +26,37 @@
 
       </v-container>
     </header>
-    <router-view/>
+
+    <v-container grid-list-md>
+
+      <v-layout row wrap>
+
+        <v-flex md2>
+          <div class="navBarLeft">
+            <ul class="headline">
+              <li>Dernier articles</li>
+              <li>Articles par catégories</li>
+              <li>Articles par effets</li>
+              <li>Tous les articles</li>
+              <li>Tout ce que vous devez savoir</li>
+              <li>F.A.Q</li>
+              <li>Rejoindre l'équipe ?</li>
+            </ul>
+          </div>
+        </v-flex>
+
+        <v-flex md8>
+          <router-view/>
+        </v-flex>
+
+        <v-flex md2>
+          test
+        </v-flex>
+
+      </v-layout>
+
+    </v-container>
+
   </div>
   <!-- eslint-enable -->
 </template>
@@ -69,5 +99,18 @@ export default {
 #app input{
   background:white;
   padding: 5px 10px 5px 10px;
+}
+#app .navBarLeft{
+  text-align:left;
+  padding:15px;
+  border-radius:6px;
+  box-shadow:0 2px 2px hsla(38,16%,76%,.5);
+}
+#app .navBarLeft ul{
+  list-style:none;
+  padding-top:15px;
+}
+#app .navBarLeft ul li{
+  margin-bottom: 15px;
 }
 </style>
