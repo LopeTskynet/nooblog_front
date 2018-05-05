@@ -1,7 +1,6 @@
 <template>
   <div class="hello">
-    <v-btn
-      color="success">Vue</v-btn>
+    Coming soon
   </div>
 </template>
 
