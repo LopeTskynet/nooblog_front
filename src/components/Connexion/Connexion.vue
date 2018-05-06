@@ -1,8 +1,9 @@
 <template>
   <!-- eslint-disable -->
   <div id="connexion">
-    <h2>Connexion</h2>
+
     <div class="formConnect">
+      <h2>Connexion</h2>
       <v-container grid-list-md>
         <v-layout row wrap>
 
@@ -39,6 +40,20 @@
 
         </v-layout>
 
+        <v-layout row wrap>
+          <v-flex md3>
+          </v-flex>
+
+          <v-flex md6>
+            <p>
+              <router-link :to="{name:'Inscription'}">Pas encore inscrit ? Cliquer ici pour le faire de suite !</router-link>
+            </p>
+          </v-flex>
+
+          <v-flex md3>
+          </v-flex>
+        </v-layout>
+
       </v-container>
     </div>
   </div>
@@ -53,7 +68,7 @@ export default {
     password: '',
     nameRules: [
       v => !!v || 'Name is required',
-      v => (v && v.length <= 10) || 'Name must be less than 10 characters'
+      v => (v && v.length <= 12) || 'Name must be less than 10 characters'
     ],
     e3: false
   }),
@@ -72,5 +87,15 @@ export default {
 </script>
 
 <style>
-
+#connexion .formConnect{
+  background:rgba(66,165,245,0.7);
+  border-radius:6px;
+  box-shadow:0 2px 2px hsla(38,16%,76%,.5);
+}
+#connexion .formConnect form{
+  padding:10px;
+}
+#connexion .formConnect form button, .input-group__input{
+  background:white;
+}
 </style>
