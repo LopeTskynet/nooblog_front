@@ -13,7 +13,7 @@
 
           <v-flex xs6>
             <ul>
-              <li class="title">connexion</li>
+              <li class="title"><router-link :to="{name:'Connexion'}">connexion</router-link></li>
               <li class="title">inscription</li>
               <li class="title">mon compte</li>
             </ul>
