@@ -80,6 +80,7 @@
 </template>
 
 <script>
+import axios from 'Axios'
 export default {
   name: 'Inscription',
   data: () => ({
@@ -122,6 +123,17 @@ export default {
           console.log(this.pseudo)
           console.log(this.password)
           console.log(this.passwordVerif)
+          axios.post('http://localhost:3000/api/v1/users', {
+            pseudo: this.pseudo,
+            password: this.password,
+            email: this.email,
+            first_name: this.firstname,
+            last_name: this.lastname
+          }).then(response => {
+            console.log(response)
+          }).catch((error) => {
+            console.error(error)
+          })
         } else {
           console.log('bad password')
         }
