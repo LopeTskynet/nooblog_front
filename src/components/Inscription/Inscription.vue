@@ -117,12 +117,6 @@ export default {
     submit () {
       if (this.$refs.form.validate()) {
         if (this.password === this.passwordVerif) {
-          console.log(this.email)
-          console.log(this.firstname)
-          console.log(this.lastname)
-          console.log(this.pseudo)
-          console.log(this.password)
-          console.log(this.passwordVerif)
           axios.post('http://localhost:3000/api/v1/users', {
             pseudo: this.pseudo,
             password: this.password,
