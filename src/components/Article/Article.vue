@@ -21,7 +21,7 @@
                 <ol>
                   <li class="sources" v-for="source in sources">
                     {{source.name}} 
-                    <a v-bind:href="source.href"> {{source.link}} </a>
+                    <a v-bind:href="source.href" target="blank"> {{source.link}} </a>
                     {{source.journal}} ({{source.date}}) 
                     </li>
                 </ol>
