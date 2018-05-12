@@ -63,7 +63,7 @@ export default {
       date: '2001'
     },
     {
-      href: 'http://googless.com',
+      href: 'http://google.com',
       link: 'La rouille est elle réellement le résultat d\'une corrosion',
       name: 'Thomas le petit train',
       journal: 'Journal de mécanique de moscow',
