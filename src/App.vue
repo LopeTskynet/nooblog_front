@@ -50,7 +50,7 @@
         </v-flex>
 
         <v-flex md2>
-          test
+          <FicheTechnique/>
         </v-flex>
 
       </v-layout>
@@ -62,12 +62,16 @@
 </template>
 
 <script>
+import FicheTechnique from '@/components/Article/FicheTechnique'
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import theme from './theme'
 Vue.use(Vuetify, theme)
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    'FicheTechnique': FicheTechnique
+  }
 }
 </script>
 
