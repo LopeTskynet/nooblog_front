@@ -13,7 +13,8 @@
 
           <v-flex xs6>
             <ul>
-              <li class="title"><router-link :to="{name:'Connexion'}">connexion</router-link></li>
+              <li class="title" v-if="!isConnected"><router-link :to="{name:'Connexion'}">connexion</router-link></li>
+              <li class="title" v-else><router-link :to="{name:'Connexion'}">{{this.$cookies.get("pseudo")}}</router-link></li>
               <li class="title"><router-link :to="{name:'Inscription'}">inscription</router-link></li>
               <li class="title">mon compte</li>
             </ul>
@@ -67,7 +68,16 @@ import Vuetify from 'vuetify'
 import theme from './theme'
 Vue.use(Vuetify, theme)
 export default {
-  name: 'App'
+  name: 'App',
+  data: () => ({
+    isConnected: false
+  }),
+  mounted () {
+    let date = 'test'
+    this.$cookies.set('testing', date)
+    // this.$cookies.set('pseudo', 'romain')
+    // this.isConnected = true
+  }
 }
 </script>
 

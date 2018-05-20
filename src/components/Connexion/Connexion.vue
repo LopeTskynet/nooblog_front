@@ -86,7 +86,11 @@ export default {
         pseudo: 'test',
         password: 'testtest'
       }).then(response => {
-        console.log(response)
+        console.log(response.data)
+        this.$cookies.set('pseudo', response.data.pseudo)
+        this.$cookies.set('first_name', response.data.first_name)
+        this.$cookies.set('last_name', response.data.last_name)
+        this.$cookies.set('token', response.data.token)
       }).catch((error) => {
         console.error(error)
       })
