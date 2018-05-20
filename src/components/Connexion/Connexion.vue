@@ -55,12 +55,14 @@
         </v-layout>
 
       </v-container>
+      <v-btn @click="submit2">test</v-btn>
     </div>
   </div>
   <!-- eslint-enable -->
 </template>
 
 <script>
+import axios from 'Axios'
 export default {
   data: () => ({
     valid: true,
@@ -78,6 +80,16 @@ export default {
         console.log(this.name)
         console.log(this.password)
       }
+    },
+    submit2 () {
+      axios.post('http://localhost:3000/api/v1/users/connection', {
+        pseudo: 'test',
+        password: 'testtest'
+      }).then(response => {
+        console.log(response)
+      }).catch((error) => {
+        console.error(error)
+      })
     },
     clear () {
       this.$refs.form.reset()
