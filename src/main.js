@@ -7,14 +7,18 @@ import App from './App'
 import VueCookies from 'vue-cookies'
 import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
+import Vuex from 'vuex'
+import store from './Store/Store'
 Vue.use(Vuetify)
 Vue.use(VueCookies)
+Vue.use(Vuex)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

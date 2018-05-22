@@ -87,10 +87,12 @@ export default {
         password: 'testtest'
       }).then(response => {
         console.log(response.data)
-        this.$cookies.set('pseudo', response.data.pseudo)
-        this.$cookies.set('first_name', response.data.first_name)
-        this.$cookies.set('last_name', response.data.last_name)
-        this.$cookies.set('token', response.data.token)
+        this.$store.state.first_name = response.data.first_name
+        this.$store.state.last_name = response.data.last_name
+        this.$store.state.pseudo = response.data.pseudo
+        this.$store.state.token = response.data.token
+        this.$store.state.isConnected = true
+        console.log('store :' + this.$store.state.first_name)
       }).catch((error) => {
         console.error(error)
       })

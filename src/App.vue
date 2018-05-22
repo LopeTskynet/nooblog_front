@@ -13,8 +13,8 @@
 
           <v-flex xs6>
             <ul>
-              <li class="title" v-if="!isConnected"><router-link :to="{name:'Connexion'}">connexion</router-link></li>
-              <li class="title" v-else><router-link :to="{name:'Connexion'}">{{this.$cookies.get("pseudo")}}</router-link></li>
+              <li class="title" v-if="!this.$store.state.isConnected"><router-link :to="{name:'Connexion'}">connexion</router-link></li>
+              <li class="title" v-else><router-link :to="{name:'Connexion'}">Welcome {{this.$store.state.pseudo}}</router-link></li>
               <li class="title"><router-link :to="{name:'Inscription'}">inscription</router-link></li>
               <li class="title">mon compte</li>
             </ul>
@@ -42,6 +42,7 @@
               <li>Tout ce que vous devez savoir</li>
               <li>F.A.Q</li>
               <li>Rejoindre l'équipe ?</li>
+              <li><v-btn @click="testStore">test</v-btn></li>
             </ul>
           </div>
         </v-flex>
@@ -64,6 +65,7 @@
 
 <script>
 import Vue from 'vue'
+import axios from 'Axios'
 import Vuetify from 'vuetify'
 import theme from './theme'
 Vue.use(Vuetify, theme)
@@ -73,10 +75,24 @@ export default {
     isConnected: false
   }),
   mounted () {
-    let date = 'test'
-    this.$cookies.set('testing', date)
-    // this.$cookies.set('pseudo', 'romain')
-    // this.isConnected = true
+    if (this.$cookies.get('pseudo') && this.$cookies.get('first_name') && this.$cookies.get('last_name') && this.$cookies.get('token')) {
+      this.isConnected = true
+      console.log('test')
+      axios.post('http://localhost:3000/api/v1/users/isconnected', {
+        pseudo: this.$cookies.pseudo,
+        token: this.$cookies.token
+      }).then(response => {
+        console.log(response)
+      }).catch(err => {
+        console.error(err)
+      })
+    }
+    console.log('test:' + this.$store.getters.getIsConnected)
+  },
+  methods: {
+    testStore () {
+      console.log('test store app:' + this.$store.state.isConnected)
+    }
   }
 }
 </script>
