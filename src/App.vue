@@ -65,30 +65,13 @@
 
 <script>
 import Vue from 'vue'
-import axios from 'Axios'
 import Vuetify from 'vuetify'
 import theme from './theme'
 Vue.use(Vuetify, theme)
 export default {
   name: 'App',
   data: () => ({
-    isConnected: false
   }),
-  mounted () {
-    if (this.$cookies.get('pseudo') && this.$cookies.get('first_name') && this.$cookies.get('last_name') && this.$cookies.get('token')) {
-      this.isConnected = true
-      console.log('test')
-      axios.post('http://localhost:3000/api/v1/users/isconnected', {
-        pseudo: this.$cookies.pseudo,
-        token: this.$cookies.token
-      }).then(response => {
-        console.log(response)
-      }).catch(err => {
-        console.error(err)
-      })
-    }
-    console.log('test:' + this.$store.getters.getIsConnected)
-  },
   methods: {
     testStore () {
       console.log('test store app:' + this.$store.state.isConnected)
