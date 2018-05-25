@@ -13,8 +13,8 @@
 
           <v-flex xs6>
             <ul>
-              <li class="title" v-if="!this.$store.state.isConnected"><router-link :to="{name:'Connexion'}">connexion</router-link></li>
-              <li class="title" v-else><router-link :to="{name:'Connexion'}">Welcome {{this.$store.state.pseudo}}</router-link></li>
+              <li class="title" v-if="!this.$store.getters.getIsConnected"><router-link :to="{name:'Connexion'}">connexion</router-link></li>
+              <li class="title" v-else><router-link :to="{name:'Connexion'}">Welcome {{this.$store.getters.getPseudo}}</router-link></li>
               <li class="title"><router-link :to="{name:'Inscription'}">inscription</router-link></li>
               <li class="title">mon compte</li>
             </ul>
@@ -74,7 +74,11 @@ export default {
   }),
   methods: {
     testStore () {
-      console.log('test store app:' + this.$store.state.isConnected)
+      console.log('test store app pseudo:' + this.$store.getters.getPseudo)
+      console.log('test store app isConnected:' + this.$store.getters.getIsConnected)
+      console.log('test store app firstname:' + this.$store.getters.getFirstName)
+      console.log('test store app lastname:' + this.$store.getters.getLastName)
+      console.log('test store app token:' + this.$store.getters.getToken)
     }
   }
 }

@@ -87,11 +87,11 @@ export default {
         password: 'testtest'
       }).then(response => {
         console.log(response.data)
-        this.$store.state.first_name = response.data.first_name
-        this.$store.state.last_name = response.data.last_name
-        this.$store.state.pseudo = response.data.pseudo
-        this.$store.state.token = response.data.token
-        this.$store.state.isConnected = true
+        this.$store.commit('setFirstName', response.data.first_name)
+        this.$store.commit('setLastName', response.data.last_name)
+        this.$store.commit('setPseudo', response.data.pseudo)
+        this.$store.commit('setToken', response.data.token)
+        this.$store.commit('setIsConnected', true)
         console.log('store :' + this.$store.state.first_name)
       }).catch((error) => {
         console.error(error)
