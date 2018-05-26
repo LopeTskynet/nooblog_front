@@ -1,6 +1,6 @@
 <template>
   <!-- eslint-disable -->
-  <div id="app">
+  <div id="app" data-app light>
     <header>
       <v-container grid-list-md>
 
@@ -13,7 +13,23 @@
 
           <v-flex xs6>
             <ul>
-              <li class="title"><router-link :to="{name:'Connexion'}">connexion</router-link></li>
+              <li class="title" v-if="!this.$store.getters.getIsConnected"><router-link :to="{name:'Connexion'}">connexion</router-link></li>
+              <li class="title" v-else>
+                <router-link :to="{name:'Connexion'}" class="text-xs-center">
+                  <v-menu offset-y>
+                    <v-btn slot="activator" color="primary" dark>
+                      Welcome {{this.$store.getters.getPseudo}}
+                    </v-btn>
+                    <v-list>
+                      <v-list-tile v-for="(item, index) in items" :key="index" @click="">
+                        <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                      </v-list-tile>
+                    </v-list>
+                  </v-menu>
+
+                </router-link>
+
+              </li>
               <li class="title"><router-link :to="{name:'Inscription'}">inscription</router-link></li>
               <li class="title">mon compte</li>
             </ul>
@@ -41,6 +57,7 @@
               <li>Tout ce que vous devez savoir</li>
               <li>F.A.Q</li>
               <li>Rejoindre l'équipe ?</li>
+              <li><v-btn @click="testStore">test</v-btn></li>
             </ul>
           </div>
         </v-flex>
@@ -69,8 +86,22 @@ import theme from './theme'
 Vue.use(Vuetify, theme)
 export default {
   name: 'App',
-  components: {
-    'FicheTechnique': FicheTechnique
+  data: () => ({
+    items: [
+      { title: 'Click Me' },
+      { title: 'Click Me' },
+      { title: 'Click Me' },
+      { title: 'Click Me 2' }
+    ]
+  }),
+  methods: {
+    testStore () {
+      console.log('test store app pseudo:' + this.$store.getters.getPseudo)
+      console.log('test store app isConnected:' + this.$store.getters.getIsConnected)
+      console.log('test store app firstname:' + this.$store.getters.getFirstName)
+      console.log('test store app lastname:' + this.$store.getters.getLastName)
+      console.log('test store app token:' + this.$store.getters.getToken)
+    }
   }
 }
 </script>
@@ -117,4 +148,11 @@ export default {
 #app .navBarLeft ul li{
   margin-bottom: 15px;
 }
+
+/* Style for menu account */
+#app .list{
+  background-color:#5e35b1;
+  color:white;
+}
+
 </style>
