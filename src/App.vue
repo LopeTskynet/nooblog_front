@@ -1,6 +1,6 @@
 <template>
   <!-- eslint-disable -->
-  <div id="app">
+  <div id="app" data-app light>
     <header>
       <v-container grid-list-md>
 
@@ -14,7 +14,22 @@
           <v-flex xs6>
             <ul>
               <li class="title" v-if="!this.$store.getters.getIsConnected"><router-link :to="{name:'Connexion'}">connexion</router-link></li>
-              <li class="title" v-else><router-link :to="{name:'Connexion'}">Welcome {{this.$store.getters.getPseudo}}</router-link></li>
+              <li class="title" v-else>
+                <router-link :to="{name:'Connexion'}" class="text-xs-center">
+                  <v-menu offset-y>
+                    <v-btn slot="activator" color="primary" dark>
+                      Welcome {{this.$store.getters.getPseudo}}
+                    </v-btn>
+                    <v-list>
+                      <v-list-tile v-for="(item, index) in items" :key="index" @click="">
+                        <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                      </v-list-tile>
+                    </v-list>
+                  </v-menu>
+
+                </router-link>
+
+              </li>
               <li class="title"><router-link :to="{name:'Inscription'}">inscription</router-link></li>
               <li class="title">mon compte</li>
             </ul>
@@ -71,6 +86,12 @@ Vue.use(Vuetify, theme)
 export default {
   name: 'App',
   data: () => ({
+    items: [
+      { title: 'Click Me' },
+      { title: 'Click Me' },
+      { title: 'Click Me' },
+      { title: 'Click Me 2' }
+    ]
   }),
   methods: {
     testStore () {
@@ -126,4 +147,11 @@ export default {
 #app .navBarLeft ul li{
   margin-bottom: 15px;
 }
+
+/* Style for menu account */
+#app .list{
+  background-color:#5e35b1;
+  color:white;
+}
+
 </style>

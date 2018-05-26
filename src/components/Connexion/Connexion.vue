@@ -102,7 +102,7 @@ export default {
     submit2 () {
       axios.post('http://localhost:3000/api/v1/users/connection', {
         pseudo: 'test',
-        password: 'testtest123456'
+        password: 'testtest'
       }).then(response => {
         console.log('response value :' + response.data)
         if (response.data) {
