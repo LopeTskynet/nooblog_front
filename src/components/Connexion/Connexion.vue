@@ -79,20 +79,43 @@ export default {
       if (this.$refs.form.validate()) {
         console.log(this.name)
         console.log(this.password)
+        axios.post('http://localhost:3000/api/v1/users/connection', {
+          pseudo: this.name,
+          password: this.password
+        }).then(response => {
+          if (response.data) {
+            console.log(response.data)
+            this.$store.commit('setFirstName', response.data.first_name)
+            this.$store.commit('setLastName', response.data.last_name)
+            this.$store.commit('setPseudo', response.data.pseudo)
+            this.$store.commit('setToken', response.data.token)
+            this.$store.commit('setIsConnected', true)
+            console.log('store :' + this.$store.state.first_name)
+          } else {
+            console.log('bad login or password')
+          }
+        }).catch(error => {
+          console.error(error)
+        })
       }
     },
     submit2 () {
       axios.post('http://localhost:3000/api/v1/users/connection', {
         pseudo: 'test',
-        password: 'testtest'
+        password: 'testtest123456'
       }).then(response => {
-        console.log(response.data)
-        this.$store.commit('setFirstName', response.data.first_name)
-        this.$store.commit('setLastName', response.data.last_name)
-        this.$store.commit('setPseudo', response.data.pseudo)
-        this.$store.commit('setToken', response.data.token)
-        this.$store.commit('setIsConnected', true)
-        console.log('store :' + this.$store.state.first_name)
+        console.log('response value :' + response.data)
+        if (response.data) {
+          console.log(response.data)
+          this.$store.commit('setFirstName', response.data.first_name)
+          this.$store.commit('setLastName', response.data.last_name)
+          this.$store.commit('setPseudo', response.data.pseudo)
+          this.$store.commit('setToken', response.data.token)
+          this.$store.commit('setIsConnected', true)
+          console.log('store :' + this.$store.state.first_name)
+        } else {
+          console.log('bad login or password')
+        }
       }).catch((error) => {
         console.error(error)
       })

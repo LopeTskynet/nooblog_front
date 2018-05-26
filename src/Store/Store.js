@@ -11,7 +11,7 @@ const state = {
 }
 
 const getters = {
-  getIsConnected: state => state.connected,
+  getIsConnected: state => state.isConnected,
   getFirstName: state => state.first_name,
   getLastName: state => state.last_name,
   getPseudo: state => state.pseudo,
@@ -83,8 +83,8 @@ const actions = {
 }
 
 const mutations = {
-  setIsConnected: (state, connected) => {
-    state.connected = connected
+  setIsConnected: (state, isConnected) => {
+    state.isConnected = isConnected
   },
   setPseudo: (state, pseudo) => {
     state.pseudo = pseudo
