@@ -86,6 +86,9 @@ import theme from './theme'
 Vue.use(Vuetify, theme)
 export default {
   name: 'App',
+  components: {
+    'FicheTechnique': FicheTechnique
+  },
   data: () => ({
     items: [
       { title: 'Click Me' },
