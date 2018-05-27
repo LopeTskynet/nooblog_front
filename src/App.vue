@@ -2,16 +2,9 @@
   <!-- eslint-disable -->
   <div id="app" data-app light>
     <header>
-      <v-container grid-list-md>
-
-        <v-layout row wrap>
-
-          <v-flex xs6>
-            <h1 class="display-3">Nooblog</h1>
-            <span class="subheading">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et mattis turpis.</span>
-          </v-flex>
-
-          <v-flex xs6>
+      <v-container grid-list-md class="noPaddingTop">
+        <v-layout row wrap class="backgroundNavbar">
+          <v-flex xs12>
             <ul>
               <li class="title" v-if="!this.$store.getters.getIsConnected"><router-link :to="{name:'Connexion'}">connexion</router-link></li>
               <li class="title" v-else>
@@ -33,6 +26,17 @@
               <li class="title"><router-link :to="{name:'Inscription'}">inscription</router-link></li>
               <li class="title">mon compte</li>
             </ul>
+          </v-flex>
+        </v-layout>
+        <v-layout row wrap>
+
+          <v-flex xs6>
+            <h1 class="display-3">Nooblog</h1>
+            <span class="subheading">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et mattis turpis.</span>
+          </v-flex>
+
+          <v-flex xs6>
+
             <div class="containerSearchBar">
               <v-text-field id="searchInput" name="search-bar" label="Rechercher..."></v-text-field>
             </div>
@@ -118,6 +122,13 @@ export default {
 #app header{
   background:gray;
 }
+#app header .noPaddingTop{
+  padding-top:0px;
+}
+#app header .backgroundNavbar{
+  background: rgb(15,60,99);
+  padding: 20px;
+}
 #app header ul{
   list-style:none;
   text-align:right;
@@ -125,6 +136,14 @@ export default {
 #app header ul li{
   display:inline;
   margin-right:10px;
+  color:white;
+  border: 2px solid white;
+  border-radius: 20px;
+  padding: 5px 10px 5px 10px;
+}
+#app header ul li a{
+  color:white;
+  text-decoration:none;
 }
 #app .containerSearchBar{
   max-width:300px;
