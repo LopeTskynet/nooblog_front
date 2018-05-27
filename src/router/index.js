@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Connexion from '@/components/Connexion/Connexion'
 import Inscription from '@/components/Inscription/Inscription'
 import Article from '@/components/Article/Article'
+import ArticleCreation from '@/components/Article/ArticleCreation'
 Vue.use(Router)
 
 export default new Router({
@@ -27,6 +28,11 @@ export default new Router({
       path: '/article/:articleId',
       name: 'Article',
       component: Article
+    },
+    {
+      path: '/creation',
+      name: 'ArticleCreation',
+      component: ArticleCreation
     }
   ]
 })

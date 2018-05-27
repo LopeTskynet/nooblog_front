@@ -10,6 +10,8 @@ import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import Vuex from 'vuex'
 import store from './Store/Store'
+import wysiwyg from 'vue-wysiwyg'
+import 'vue-wysiwyg/dist/vueWysiwyg.css'
 // import './components/style/main.style'
 Vue.use(Vuetify, {
   theme: {
@@ -24,6 +26,7 @@ Vue.use(Vuetify, {
 })
 Vue.use(VueCookies)
 Vue.use(Vuex)
+Vue.use(wysiwyg, {})
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
