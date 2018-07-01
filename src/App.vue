@@ -13,11 +13,17 @@
 
           <v-flex xs6>
             <ul>
-              <li class="title" v-if="!this.$store.getters.getIsConnected"><router-link :to="{name:'Connexion'}">connexion</router-link></li>
+              <li class="title" v-if="!this.$store.getters.getIsConnected">
+                <router-link :to="{name:'Connexion'}">
+                  <v-btn class="btnHeader">connexion</v-btn>
+                </router-link>
+              </li>
+
               <li class="title" v-else>
+
                 <router-link :to="{name:'Connexion'}" class="text-xs-center">
                   <v-menu offset-y>
-                    <v-btn slot="activator" color="primary" dark>
+                    <v-btn slot="activator" class="btnHeader">
                       Welcome {{this.$store.getters.getPseudo}}
                     </v-btn>
                     <v-list>
@@ -26,11 +32,12 @@
                       </v-list-tile>
                     </v-list>
                   </v-menu>
-
                 </router-link>
 
               </li>
-              <li class="title"><router-link :to="{name:'Inscription'}">inscription</router-link></li>
+
+              <li class="title"><router-link :to="{name:'Inscription'}"><v-btn class="btnHeader">inscription</v-btn></router-link></li>
+
               <li class="title">mon compte</li>
             </ul>
             <div class="containerSearchBar">
@@ -120,7 +127,15 @@ export default {
   text-align:center;
 }
 #app header{
-  background:gray;
+  background: linear-gradient(70deg, #01579B, #00ACC1);
+  border-bottom: 6px solid rgba(100,100,100,0.5);
+}
+#app header a{
+  text-decoration: none;
+  color: black;
+}
+#app header a .btnHeader{
+  background:rgba(255,255,255,0.9);
 }
 #app header ul{
   list-style:none;
@@ -143,6 +158,7 @@ export default {
   padding:15px;
   border-radius:6px;
   box-shadow:0 2px 2px hsla(38,16%,76%,.5);
+  background:gray;
 }
 #app .navBarLeft ul{
   list-style:none;

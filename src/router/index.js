@@ -5,6 +5,7 @@ import Connexion from '@/components/Connexion/Connexion'
 import Inscription from '@/components/Inscription/Inscription'
 import Article from '@/components/Article/Article'
 import ArticleCreation from '@/components/Article/ArticleCreation'
+import ArticlePreview from '@/components/Article/ArticlePreview'
 Vue.use(Router)
 
 export default new Router({
@@ -33,6 +34,11 @@ export default new Router({
       path: '/creation',
       name: 'ArticleCreation',
       component: ArticleCreation
+    },
+    {
+      path: '/preview',
+      name: 'ArticlePreview',
+      component: ArticlePreview
     }
   ]
 })
