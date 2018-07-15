@@ -1,4 +1,5 @@
 <template>
+  <!-- eslint-disable -->
   <div id="lastArticle">
     <v-container grid-list-md>
       <v-layout row wrap>
@@ -11,6 +12,7 @@
     </v-container>
 
   </div>
+  <!-- eslint-enable -->
 </template>
 
 <script>
