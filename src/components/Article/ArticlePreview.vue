@@ -12,7 +12,19 @@
     <div v-html="article">
       {{ article }}
     </div>
-    <v-btn @click="submit">test</v-btn>
+    <v-radio-group v-model="radios" :mandatory="false">
+      <v-container>
+        <v-layout>
+          <v-flex md=6>
+            <v-radio label="Sauvegarder temporairement l'article" value="false"></v-radio>
+          </v-flex>
+          <v-flex md=6>
+            <v-radio label="Valider l'article" value="true"></v-radio>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-radio-group>
+    <v-btn @click="submit">Valider</v-btn>
   </div>
   <!-- eslint-enable -->
 </template>
@@ -36,15 +48,17 @@ export default {
     }
   },
   data: () => ({
+    radios: 'false'
   }),
   methods: {
     submit () {
       if (this.article) {
-        console.log(this.article)
+        console.log(typeof this.radios)
         axios.post('http://localhost:3000/api/v1/article', {
           article: this.article,
           title: this.title,
-          tag: this.tag
+          tag: this.tag,
+          isFinish: this.radios
         }).then(response => {
           if (response.data) {
             console.log(response.data)

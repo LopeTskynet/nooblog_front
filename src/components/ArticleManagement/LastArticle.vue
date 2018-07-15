@@ -3,10 +3,10 @@
   <div id="lastArticle">
     <v-container grid-list-md>
       <v-layout row wrap>
-        <v-flex md4 v-for="item in article">
-          <h2 v-html="item.title" />
-          <div>TAG : <span v-html="item.tag" /></div>
-          <i><span>This article was created the </span><span v-html="item.date" /></i>
+        <v-flex md4 v-for="article in articleList" :key="article.id">
+          <h2 v-html="article.title" />
+          <div>TAG : <span v-html="article.tag" /></div>
+          <i><span>This article was created the </span><span v-html="article.date" /></i>
         </v-flex>
       </v-layout>
     </v-container>
@@ -20,14 +20,14 @@ import axios from 'Axios'
 export default {
   name: 'LastArticle',
   data: () => ({
-    article: []
+    articleList: []
   }),
   mounted () {
     axios.post('http://localhost:3000/api/v1/article/all', {
 
     }).then(response => {
       response.data.forEach(e => {
-        this.article.push(e)
+        this.articleList.push(e)
       })
     })
   }
