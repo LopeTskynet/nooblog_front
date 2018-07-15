@@ -6,6 +6,7 @@ import Inscription from '@/components/Inscription/Inscription'
 import Article from '@/components/Article/Article'
 import ArticleCreation from '@/components/Article/ArticleCreation'
 import ArticlePreview from '@/components/Article/ArticlePreview'
+import LastArticle from '@/components/ArticleManagement/LastArticle'
 Vue.use(Router)
 
 export default new Router({
@@ -39,6 +40,11 @@ export default new Router({
       path: '/preview',
       name: 'ArticlePreview',
       component: ArticlePreview
+    },
+    {
+      path: 'lastarticle',
+      name: 'LastArticle',
+      component: LastArticle
     }
   ]
 })
