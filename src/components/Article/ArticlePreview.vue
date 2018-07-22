@@ -25,6 +25,7 @@
       </v-container>
     </v-radio-group>
     <v-btn @click="submit">Valider</v-btn>
+    <v-btn @click="testing">connecttry</v-btn>
   </div>
   <!-- eslint-enable -->
 </template>
@@ -58,7 +59,9 @@ export default {
           article: this.article,
           title: this.title,
           tag: this.tag,
-          isFinish: this.radios
+          isFinish: this.radios,
+          pseudo: this.$store.getters.getPseudo,
+          token: this.$store.getters.getToken
         }).then(response => {
           if (response.data) {
             console.log(response.data)
@@ -69,6 +72,17 @@ export default {
           console.error(err)
         })
       }
+    },
+    testing () {
+      console.log(this.$store.getters.getIsConnected)
+      axios.post('http://localhost:3000/api/v1/users/isconnected', {
+        pseudo: this.$store.getters.getPseudo,
+        token: this.$store.getters.getToken
+      }).then(response => {
+        console.log(response)
+      }).catch(err => {
+        console.error(err)
+      })
     }
   }
 }
