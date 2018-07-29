@@ -16,8 +16,7 @@ npm install --save sass-loader
 
 npm install --save node-sass
 
-npm install --save axios
-
+npm install --save axios vue-axios
 ### Build Setup
 
 ``` bash
