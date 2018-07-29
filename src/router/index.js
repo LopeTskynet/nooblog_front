@@ -7,6 +7,7 @@ import Article from '@/components/Article/Article'
 import ArticleCreation from '@/components/Article/ArticleCreation'
 import ArticlePreview from '@/components/Article/ArticlePreview'
 import LastArticle from '@/components/ArticleManagement/LastArticle'
+import TechnicalSheet from '@/components/TechnicalSheet/TechnicalSheet'
 Vue.use(Router)
 
 export default new Router({
@@ -42,9 +43,14 @@ export default new Router({
       component: ArticlePreview
     },
     {
-      path: 'lastarticle',
+      path: '/lastarticle',
       name: 'LastArticle',
       component: LastArticle
+    },
+    {
+      path: '/fichetechnique',
+      name: 'TechnicalSheet',
+      component: TechnicalSheet
     }
   ]
 })
