@@ -55,7 +55,7 @@ export default {
     submit () {
       if (this.article) {
         console.log(typeof this.radios)
-        axios.post('http://localhost:3000/api/v1/article', {
+        axios.post('http://localhost:3000/api/v1/article/create', {
           article: this.article,
           title: this.title,
           tag: this.tag,

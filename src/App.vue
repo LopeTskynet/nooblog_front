@@ -64,7 +64,7 @@
               <li><a href="#"><i class="ti-hand-point-right"></i>Tout ce que vous devez savoir</a></li>
               <li><a href="#"><i class="ti-info-alt"></i>F.A.Q</a></li>
               <li><a href="#"><i class="ti-user"></i>Rejoindre l'équipe ?</a></li>
-              <li><v-btn @click="testStore">test</v-btn></li>
+              <li><v-btn @click="testStore">test store and token</v-btn></li>
             </ul>
             <div class="movingArrow " :class="arrow"></div>
           </div>
@@ -91,6 +91,7 @@ import FicheTechnique from '@/components/Article/FicheTechnique'
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import theme from './theme'
+import axios from 'Axios'
 Vue.use(Vuetify, theme)
 export default {
   name: 'App',
@@ -113,6 +114,16 @@ export default {
       console.log('test store app firstname:' + this.$store.getters.getFirstName)
       console.log('test store app lastname:' + this.$store.getters.getLastName)
       console.log('test store app token:' + this.$store.getters.getToken)
+      axios.post('http://localhost:3000/api/v1/users/isconnected', {
+        pseudo: this.$store.getters.getPseudo,
+        token: this.$store.getters.getToken
+      })
+        .then(response => {
+          console.log('response check user is connected :' + response.data)
+        })
+        .catch(err => {
+          console.error(err)
+        })
     }
   }
 }
