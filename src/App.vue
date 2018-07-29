@@ -152,14 +152,12 @@ export default {
   color: black;
 }
 #app header a .btnHeader{
-  /*background:rgba(255,255,255,0.9);*/
    box-shadow:none
 }
 #app header .noPaddingTop{
   padding-top:0px;
 }
 #app header .backgroundNavbar{
-/*  background: rgb(15,60,99);*/
   padding: 20px;
 }
 #app header ul{
