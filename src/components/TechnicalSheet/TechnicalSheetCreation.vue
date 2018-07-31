@@ -2,7 +2,7 @@
   <div id="technicalSheetCreation">
     <div class="container">
       <h2>Création de fiche technique</h2>
-      <form>
+      <v-form ref="form">
         <v-text-field label="Nom de la fiche technique" required />
         <v-textarea
           name="pharma"
@@ -32,9 +32,9 @@
                     <v-text-field placeholder="Nom de l'effet" :name=setPhysicName(item) />
                     <v-textarea
                       class="textAreaEffect"
-                      :name=setPhysicDescribeName(item)
+                      :name="setPhysicDescribeName(item)"
                       box
-                      :label=testing(item)
+                      :label="testing(item)"
                       auto-grow
                       placeholder="Remplir la description ici."
                     />
@@ -57,21 +57,61 @@
                     <v-text-field placeholder="Nom de l'effet" :name=setCognitifName(item) />
                     <v-textarea
                       class="textAreaEffect"
-                      :name=setCognitifDescribeName(item)
+                      :name="setCognitifDescribeName(item)"
                       box
-                      :label=testing(item)
+                      :label="testing(item)"
                       auto-grow
                       placeholder="Remplir la description ici."
                     />
                   </li>
+                  <v-btn @click="addCognitifEffect">Ajout d'un effet cognitif</v-btn>
                 </ul>
               </v-card-text>
 
             </v-card>
           </v-expansion-panel-content>
+          <v-expansion-panel-content>
+            <div slot="header">
+              <h3>Effets indésirable</h3>
+            </div>
+            <v-card>
+              <v-card-text>
+                <ul class="listNameEffect">
+                  <li v-for="item in inputIndesirableEffect" :key="item">
+                    <h4>Effet n°{{ item }}</h4>
+                    <v-text-field placeholder="Nom de l'effet" :name=setIndesirableName(item) />
+                    <v-textarea
+                      class="textAreaEffect"
+                      :name="setIndesirableDescribeName(item)"
+                      box
+                      :label="testing(item)"
+                      auto-grow
+                      placeholder="Remplir la description ici."
+                    />
+                  </li>
+                  <v-btn @click="addIndesirableEffect">Ajout d'un effet indésirable</v-btn>
+                </ul>
+              </v-card-text>
+            </v-card>
+          </v-expansion-panel-content>
         </v-expansion-panel>
 
-      </form>
+        <v-textarea
+          name="toxicity"
+          box
+          label="Toxicité et Interaction potentielle"
+          auto-grow
+          placeholder="Remplir les informations sur la toxicité et les interactions ici."
+        />
+
+        <ul class="listNameEffect">
+          <li v-for="item in inputUrlReference" :key="item">
+            <v-text-field placeholder="Entrez l'url ici" :name="setUrlName(item)" />
+          </li>
+          <v-btn @click="addUrlReference">Ajout d'une référence</v-btn>
+        </ul>
+      </v-form>
+      <v-btn @click="testForm">test form</v-btn>
     </div>
   </div>
 </template>
@@ -80,11 +120,22 @@ export default {
   name: 'TechnicalSheetCreation',
   data: () => ({
     inputPhysicEffect: 1,
-    inputCognitifEffect: 1
+    inputCognitifEffect: 1,
+    inputIndesirableEffect: 1,
+    inputUrlReference: 1
   }),
   methods: {
     addPhysicEffect () {
       this.inputPhysicEffect = this.inputPhysicEffect + 1
+    },
+    addCognitifEffect () {
+      this.inputCognitifEffect = this.inputCognitifEffect + 1
+    },
+    addIndesirableEffect () {
+      this.inputIndesirableEffect = this.inputIndesirableEffect + 1
+    },
+    addUrlReference () {
+      this.inputUrlReference = this.inputUrlReference + 1
     },
     testing (str) {
       return 'effect' + str
@@ -100,6 +151,18 @@ export default {
     },
     setCognitifDescribeName (str) {
       return 'cognitifEffectDescribe' + str
+    },
+    setIndesirableName (str) {
+      return 'indesirableEffect' + str
+    },
+    setIndesirableDescribeName (str) {
+      return 'indesirableEffectDescribe' + str
+    },
+    setUrlName (str) {
+      return 'urlName' + str
+    },
+    testForm () {
+      console.log(this.$refs.form)
     }
   }
 }
