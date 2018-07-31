@@ -81,6 +81,7 @@
 
 <script>
 export default {
+  name: 'TechnicalSheet',
   data: () => ({
     physicEffect: {
       'title1': ['concentration', 'Lorem ispum dolor sit amet si si lorem ispum dolor sit Lorem ispum dolor sit amet si si lorem ispum dolor sit '],
