@@ -28,16 +28,7 @@
               <v-card-text>
                 <ul class="listNameEffect">
                   <li v-for="item in inputPhysicEffect" :key="item">
-                    <h4>Effet n°{{ item }}</h4>
-                    <v-text-field placeholder="Nom de l'effet" :name=setPhysicName(item) />
-                    <v-textarea
-                      class="textAreaEffect"
-                      :name="setPhysicDescribeName(item)"
-                      box
-                      :label="testing(item)"
-                      auto-grow
-                      placeholder="Remplir la description ici."
-                    />
+                    <technical-sheet-effect :index="item" :type="effects[0]" />
                   </li>
                   <v-btn @click="addPhysicEffect">Ajout d'un effet physique</v-btn>
                 </ul>
@@ -53,16 +44,7 @@
               <v-card-text>
                 <ul class="listNameEffect">
                   <li v-for="item in inputCognitifEffect" :key="item">
-                    <h4>Effet n°{{ item }}</h4>
-                    <v-text-field placeholder="Nom de l'effet" :name=setCognitifName(item) />
-                    <v-textarea
-                      class="textAreaEffect"
-                      :name="setCognitifDescribeName(item)"
-                      box
-                      :label="testing(item)"
-                      auto-grow
-                      placeholder="Remplir la description ici."
-                    />
+                    <technical-sheet-effect :index="item" :type="effects[1]" />
                   </li>
                   <v-btn @click="addCognitifEffect">Ajout d'un effet cognitif</v-btn>
                 </ul>
@@ -78,16 +60,7 @@
               <v-card-text>
                 <ul class="listNameEffect">
                   <li v-for="item in inputIndesirableEffect" :key="item">
-                    <h4>Effet n°{{ item }}</h4>
-                    <v-text-field placeholder="Nom de l'effet" :name=setIndesirableName(item) />
-                    <v-textarea
-                      class="textAreaEffect"
-                      :name="setIndesirableDescribeName(item)"
-                      box
-                      :label="testing(item)"
-                      auto-grow
-                      placeholder="Remplir la description ici."
-                    />
+                    <technical-sheet-effect :index="item" :type="effects[2]" />
                   </li>
                   <v-btn @click="addIndesirableEffect">Ajout d'un effet indésirable</v-btn>
                 </ul>
@@ -116,13 +89,18 @@
   </div>
 </template>
 <script>
+import TechnicalSheetEffect from '@/components/TechnicalSheet/TechnicalSheetEffect'
 export default {
   name: 'TechnicalSheetCreation',
+  components: {
+    TechnicalSheetEffect
+  },
   data: () => ({
     inputPhysicEffect: 1,
     inputCognitifEffect: 1,
     inputIndesirableEffect: 1,
-    inputUrlReference: 1
+    inputUrlReference: 1,
+    effects: ['physicEffect', 'cognitifEffect', 'indesirableEffect']
   }),
   methods: {
     addPhysicEffect () {
@@ -140,29 +118,11 @@ export default {
     testing (str) {
       return 'effect' + str
     },
-    setPhysicName (str) {
-      return 'physicEffect' + str
-    },
-    setPhysicDescribeName (str) {
-      return 'physicEffectDescribe' + str
-    },
-    setCognitifName (str) {
-      return 'cognitifEffect' + str
-    },
-    setCognitifDescribeName (str) {
-      return 'cognitifEffectDescribe' + str
-    },
-    setIndesirableName (str) {
-      return 'indesirableEffect' + str
-    },
-    setIndesirableDescribeName (str) {
-      return 'indesirableEffectDescribe' + str
-    },
     setUrlName (str) {
       return 'urlName' + str
     },
     testForm () {
-      console.log(this.$refs.form)
+      console.log('testform')
     }
   }
 }
