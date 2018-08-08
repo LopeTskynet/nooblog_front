@@ -28,7 +28,15 @@
               <v-card-text>
                 <ul class="listNameEffect">
                   <li v-for="item in inputPhysicEffect" :key="item">
-                    <technical-sheet-effect :index="item" :type="effects[0]" />
+                    <h4>Effet n°{{ item }}</h4>
+                    <v-text-field placeholder="Nom de l'effet" :name="setName(effects[0], item)" v-model="nameEffectPhysic[item]" />
+                    <v-textarea
+                      box
+                      :name="setDescribeName(effects[0], item)"
+                      auto-grow
+                      v-model="describeEffectPhysic[item]"
+                      placeholder="Remplir la description ici."
+                    />
                   </li>
                   <v-btn @click="addPhysicEffect">Ajout d'un effet physique</v-btn>
                 </ul>
@@ -44,7 +52,15 @@
               <v-card-text>
                 <ul class="listNameEffect">
                   <li v-for="item in inputCognitifEffect" :key="item">
-                    <technical-sheet-effect :index="item" :type="effects[1]" />
+                    <h4>Effet n°{{ item }}</h4>
+                    <v-text-field placeholder="Nom de l'effet" :name="setName(effects[1], item)" v-model="nameEffectCognitif[item]" />
+                    <v-textarea
+                      box
+                      :name="setDescribeName(effects[1], item)"
+                      auto-grow
+                      v-model="describeEffectCognitif[item]"
+                      placeholder="Remplir la description ici."
+                    />
                   </li>
                   <v-btn @click="addCognitifEffect">Ajout d'un effet cognitif</v-btn>
                 </ul>
@@ -60,7 +76,15 @@
               <v-card-text>
                 <ul class="listNameEffect">
                   <li v-for="item in inputIndesirableEffect" :key="item">
-                    <technical-sheet-effect :index="item" :type="effects[2]" />
+                    <h4>Effet n°{{ item }}</h4>
+                    <v-text-field placeholder="Nom de l'effet" :name="setName(effects[2], item)" v-model="nameEffectIndesirable[item]" />
+                    <v-textarea
+                      box
+                      :name="setDescribeName(effects[2], item)"
+                      auto-grow
+                      v-model="describeEffectIndesirable[item]"
+                      placeholder="Remplir la description ici."
+                    />
                   </li>
                   <v-btn @click="addIndesirableEffect">Ajout d'un effet indésirable</v-btn>
                 </ul>
@@ -89,18 +113,20 @@
   </div>
 </template>
 <script>
-import TechnicalSheetEffect from '@/components/TechnicalSheet/TechnicalSheetEffect'
 export default {
   name: 'TechnicalSheetCreation',
-  components: {
-    TechnicalSheetEffect
-  },
   data: () => ({
     inputPhysicEffect: 1,
     inputCognitifEffect: 1,
     inputIndesirableEffect: 1,
     inputUrlReference: 1,
-    effects: ['physicEffect', 'cognitifEffect', 'indesirableEffect']
+    effects: ['physicEffect', 'cognitifEffect', 'indesirableEffect'],
+    nameEffectPhysic: [],
+    describeEffectPhysic: [],
+    nameEffectCognitif: [],
+    describeEffectCognitif: [],
+    nameEffectIndesirable: [],
+    describeEffectIndesirable: []
   }),
   methods: {
     addPhysicEffect () {
@@ -115,6 +141,12 @@ export default {
     addUrlReference () {
       this.inputUrlReference = this.inputUrlReference + 1
     },
+    setName (type, str) {
+      return type + str
+    },
+    setDescribeName (type, str) {
+      return type + 'Describe' + str
+    },
     testing (str) {
       return 'effect' + str
     },
@@ -122,7 +154,15 @@ export default {
       return 'urlName' + str
     },
     testForm () {
-      console.log('testform')
+      console.log('PHYSIC EFFECT')
+      console.log(this.nameEffectPhysic)
+      console.log(this.describeEffectPhysic)
+      console.log('\n \n COGNITIF EFFECT')
+      console.log(this.nameEffectCognitif)
+      console.log(this.describeEffectCognitif)
+      console.log('\n \n INDESIRABLE')
+      console.log(this.nameEffectIndesirable)
+      console.log(this.describeEffectIndesirable)
     }
   }
 }
