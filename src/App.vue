@@ -1,5 +1,4 @@
 <template>
-  <!-- eslint-disable -->
   <div id="app" data-app light>
     <header>
       <v-container grid-list-md class="noPaddingTop">
@@ -17,10 +16,10 @@
                 <router-link :to="{name:'Connexion'}" class="text-xs-center">
                   <v-menu offset-y>
                     <v-btn slot="activator" class="btnHeader">
-                      Welcome {{this.$store.getters.getPseudo}}
+                      Welcome {{ this.$store.getters.getPseudo }}
                     </v-btn>
                     <v-list>
-                      <v-list-tile v-for="(item, index) in items" :key="index" @click="">
+                      <v-list-tile v-for="(item, index) in items" :key="index" @click="mockButton">
                         <v-list-tile-title>{{ item.title }}</v-list-tile-title>
                       </v-list-tile>
                     </v-list>
@@ -29,7 +28,13 @@
 
               </li>
 
-              <li class="title"><router-link :to="{name:'Inscription'}"><v-btn class="btnHeader">inscription</v-btn></router-link></li>
+              <li class="title">
+                <router-link :to="{name:'Inscription'}">
+                  <v-btn class="btnHeader">
+                    inscription
+                  </v-btn>
+                </router-link>
+              </li>
 
               <li class="title">mon compte</li>
             </ul>
@@ -45,7 +50,7 @@
           <v-flex xs6>
 
             <div class="containerSearchBar">
-              <v-text-field id="searchInput" name="search-bar" label="Rechercher..."></v-text-field>
+              <v-text-field id="searchInput" name="search-bar" label="Rechercher..." />
             </div>
           </v-flex>
 
@@ -61,16 +66,16 @@
         <v-flex md2>
           <div class="navBarLeft">
             <ul class="headline">
-              <li><a href="#"><router-link :to="{name:'LastArticle'}"><i class="ti-write"></i>Dernier articles</router-link></a></li>
-              <li><a href="#"><i class="ti-archive"></i>Articles par catégories</a></li>
-              <li><a href="#"><i class="ti-archive"></i>Articles par effets</a></li>
-              <li><a href="#"><i class="ti-book"></i>Tous les articles</a></li>
-              <li><a href="#"><i class="ti-hand-point-right"></i>Tout ce que vous devez savoir</a></li>
-              <li><a href="#"><i class="ti-info-alt"></i>F.A.Q</a></li>
-              <li><a href="#"><i class="ti-user"></i>Rejoindre l'équipe ?</a></li>
+              <li><a href="#"><router-link :to="{name:'LastArticle'}"><i class="ti-write" />Dernier articles</router-link></a></li>
+              <li><a href="#"><i class="ti-archive" />Articles par catégories</a></li>
+              <li><a href="#"><i class="ti-archive" />Articles par effets</a></li>
+              <li><a href="#"><i class="ti-book" />Tous les articles</a></li>
+              <li><a href="#"><i class="ti-hand-point-right" />Tout ce que vous devez savoir</a></li>
+              <li><a href="#"><i class="ti-info-alt" />F.A.Q</a></li>
+              <li><a href="#"><i class="ti-user" />Rejoindre l'équipe ?</a></li>
               <li><v-btn @click="testStore">test store and token</v-btn></li>
             </ul>
-            <div class="movingArrow " :class="arrow"></div>
+            <div class="movingArrow " :class="arrow" />
           </div>
         </v-flex>
 
@@ -87,7 +92,6 @@
     </v-container>
 
   </div>
-  <!-- eslint-enable -->
 </template>
 
 <script>
@@ -128,6 +132,9 @@ export default {
         .catch(err => {
           console.error(err)
         })
+    },
+    mockButton () {
+      console.log('button press')
     }
   }
 }
