@@ -20,7 +20,7 @@
               </v-text-field>
               <v-text-field
                 :append-icon="e3 ? 'visibility' : 'visibility_off'"
-                :append-icon-cb="() => (e3 = !e3)"
+                @click:append-icon-cb="() => (e3 = !e3)"
                 :type="e3 ? 'password' : 'text'"
                 v-model="password"
                 name="input-10-2"
