@@ -60,7 +60,7 @@
                     <span v-else>
                       <input type="password" placeholder="ancien mot de passe" class="transition" :class="stylus" v-model="this.account.oldpassword"><br>
                       <input type="password" placeholder="nouveau mot de passe" class="transition" :class="stylus" v-model="this.account.newpassword"><br>
-                      <input type="password" placeholder="nouveau mot de passe" class="transition" :class="stylus"v-model="this.account.verifpassword">
+                      <input type="password" placeholder="nouveau mot de passe" class="transition" :class="stylus" v-model="this.account.verifpassword">
                     </span>
                   </v-flex>
                 </v-layout>
