@@ -9,6 +9,7 @@ import ArticlePreview from '@/components/Article/ArticlePreview'
 import LastArticle from '@/components/ArticleManagement/LastArticle'
 import TechnicalSheet from '@/components/TechnicalSheet/TechnicalSheet'
 import TechnicalSheetCreation from '@/components/TechnicalSheet/TechnicalSheetCreation'
+import Parameter from '@/components/AccountManagement/Parameter'
 Vue.use(Router)
 
 export default new Router({
@@ -57,6 +58,11 @@ export default new Router({
       path: '/fichetechnique/creation',
       name: 'TechnicalSheetCreation',
       component: TechnicalSheetCreation
+    },
+    {
+      path: '/account/parametre',
+      name: 'Parameter',
+      component: Parameter
     }
   ]
 })

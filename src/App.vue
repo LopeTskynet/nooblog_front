@@ -19,8 +19,12 @@
                       Welcome {{ this.$store.getters.getPseudo }}
                     </v-btn>
                     <v-list>
-                      <v-list-tile v-for="(item, index) in items" :key="index" @click="mockButton">
-                        <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                      <v-list-tile @click="mockButton">
+                        <v-list-tile-title>
+                          <router-link :to="{name:'Parameter'}">
+                            parametre
+                          </router-link>
+                        </v-list-tile-title>
                       </v-list-tile>
                     </v-list>
                   </v-menu>
@@ -28,7 +32,7 @@
 
               </li>
 
-              <li class="title">
+              <li class="title" v-if="!this.$store.getters.getIsConnected">
                 <router-link :to="{name:'Inscription'}">
                   <v-btn class="btnHeader">
                     inscription
@@ -107,12 +111,6 @@ export default {
     'FicheTechnique': FicheTechnique
   },
   data: () => ({
-    items: [
-      { title: 'Click Me' },
-      { title: 'Click Me' },
-      { title: 'Click Me' },
-      { title: 'Click Me 2' }
-    ],
     arrow: 'movingArrowMenu'
   }),
   methods: {
