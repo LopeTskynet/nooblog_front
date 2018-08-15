@@ -1,12 +1,11 @@
 <template>
-  <!-- eslint-disable -->
   <div id="articlePreview">
     <div>
       <h3>Title :</h3>{{ title }}
     </div>
     <div>
       <h3>Tags :</h3>
-      <span v-for="value in tag"> {{ value }} </span>
+      <span v-for="value in tag" :key="value"> {{ value }} </span>
     </div>
     <h3>Article :</h3>
     <div v-html="article">
@@ -16,10 +15,10 @@
       <v-container>
         <v-layout>
           <v-flex md=6>
-            <v-radio label="Sauvegarder temporairement l'article" value="false"></v-radio>
+            <v-radio label="Sauvegarder temporairement l'article" value="false" />
           </v-flex>
           <v-flex md=6>
-            <v-radio label="Valider l'article" value="true"></v-radio>
+            <v-radio label="Valider l'article" value="true" />
           </v-flex>
         </v-layout>
       </v-container>
@@ -27,7 +26,6 @@
     <v-btn @click="submit">Valider</v-btn>
     <v-btn @click="testing">connecttry</v-btn>
   </div>
-  <!-- eslint-enable -->
 </template>
 
 <script>

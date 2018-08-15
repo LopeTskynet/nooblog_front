@@ -1,14 +1,11 @@
 <template>
-  <!-- eslint-disable -->
   <div id="connexion">
-
     <div class="formConnect">
       <h2>Connexion</h2>
       <v-container grid-list-md>
         <v-layout row wrap>
 
-          <v-flex md3>
-          </v-flex>
+          <v-flex md3 />
 
           <v-flex md6>
             <v-form v-model="valid" ref="form" lazy-validation>
@@ -16,8 +13,8 @@
                 v-model="name"
                 :rules="nameRules"
                 label="Name"
-                required>
-              </v-text-field>
+                required
+              />
               <v-text-field
                 :append-icon="e3 ? 'visibility' : 'visibility_off'"
                 @click:append-icon-cb="() => (e3 = !e3)"
@@ -28,21 +25,19 @@
                 hint="At least 8 characters"
                 min="8"
                 placeholder="Password"
-                class="input-group--focused">
-              </v-text-field>
+                class="input-group--focused"
+              />
               <v-btn :disabled="!valid" @click="submit">Submit</v-btn>
               <v-btn @click="clear">clear</v-btn>
             </v-form>
           </v-flex>
 
-          <v-flex md3>
-          </v-flex>
+          <v-flex md3 />
 
         </v-layout>
 
         <v-layout row wrap>
-          <v-flex md3>
-          </v-flex>
+          <v-flex md3 />
 
           <v-flex md6>
             <p>
@@ -50,15 +45,13 @@
             </p>
           </v-flex>
 
-          <v-flex md3>
-          </v-flex>
+          <v-flex md3 />
         </v-layout>
 
       </v-container>
       <v-btn @click="submit2">test</v-btn>
     </div>
   </div>
-  <!-- eslint-enable -->
 </template>
 
 <script>

@@ -1,19 +1,18 @@
 <template>
-  <!-- eslint-disable -->
   <div id="articleCreation">
     <div v-if="!this.preview">
       <v-text-field
         id="title"
         v-model="title"
         label="Title of this article"
-        required>
-      </v-text-field>
+        required
+      />
       <v-text-field
         id="tag"
         v-model="tag"
         label="Enter tags here, you must separate tags by a space like this : ' ' "
-        required>
-      </v-text-field>
+        required
+      />
     </div>
     <div v-if="!this.preview">
       <v-form ref="form" lazy-validation>
@@ -21,14 +20,13 @@
       </v-form>
     </div>
     <div v-else>
-      <ArticlePreview v-bind:article="this.article" v-bind:title="this.title" v-bind:tag="this.tag"></ArticlePreview>
+      <ArticlePreview :article="this.article" :title="this.title" :tag="this.tag" />
     </div>
     <v-btn @click="saveArticle">
       <span v-if="!this.preview">Show the preview</span>
       <span v-else>Back to the editor</span>
     </v-btn>
   </div>
-  <!-- eslint-enable -->
 </template>
 
 <script>

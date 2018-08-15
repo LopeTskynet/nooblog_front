@@ -1,13 +1,10 @@
 <template>
-  <!-- eslint-disable -->
   <div id="inscription">
     <div class="containerInscription">
       <v-container grid-list-md>
         <v-layout row wrap>
 
-          <v-flex md3>
-
-          </v-flex>
+          <v-flex md3 />
 
           <v-flex md6>
 
@@ -19,26 +16,26 @@
                 v-model="email"
                 :rules="emailRules"
                 label="E-mail"
-                required>
-              </v-text-field>
+                required
+              />
               <v-text-field
                 v-model="firstname"
                 :rules="firstNameRules"
                 label="Prénom"
-                required>
-              </v-text-field>
+                required
+              />
               <v-text-field
                 v-model="lastname"
                 :rules="lastNameRules"
                 label="Nom"
-                required>
-              </v-text-field>
+                required
+              />
               <v-text-field
                 v-model="pseudo"
                 :rules="pseudoRules"
                 label="Pseudo"
-                required>
-              </v-text-field>
+                required
+              />
               <v-text-field
                 :append-icon="e3 ? 'visibility' : 'visibility_off'"
                 :append-icon-cb="() => (e3 = !e3)"
@@ -49,8 +46,8 @@
                 hint="At least 8 characters"
                 min="8"
                 placeholder="Mot de passe"
-                class="input-group--focused">
-              </v-text-field>
+                class="input-group--focused"
+              />
               <v-text-field
                 :append-icon="e3 ? 'visibility' : 'visibility_off'"
                 :append-icon-cb="() => (e3 = !e3)"
@@ -60,8 +57,8 @@
                 hint="At least 8 characters"
                 min="8"
                 placeholder="Entrer à nouveau votre mot de passe"
-                class="input-group--focused">
-              </v-text-field>
+                class="input-group--focused"
+              />
 
               <v-btn :disabled="!valid" @click="submit">Submit</v-btn>
               <v-btn @click="clear">clear</v-btn>
@@ -69,14 +66,11 @@
 
           </v-flex>
 
-          <v-flex md3>
-
-          </v-flex>
+          <v-flex md3 />
         </v-layout>
       </v-container>
     </div>
   </div>
-  <!-- eslint-enable -->
 </template>
 
 <script>
