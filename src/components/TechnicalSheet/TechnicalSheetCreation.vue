@@ -1,8 +1,8 @@
 <template>
   <div id="technicalSheetCreation">
-    <div class="container">
+    <div v-if="!this.preview" class="container">
       <h2>Création de fiche technique</h2>
-      <v-form ref="form">
+      <v-form ref="form" v-model="valid" lazy-validation>
         <v-text-field label="Nom de la fiche technique" required v-model="technicalSheet.name" />
         <v-textarea
           name="pharma"
@@ -31,7 +31,11 @@
                 <ul class="listNameEffect">
                   <li v-for="item in technicalSheet.effects.physic.counter" :key="item">
                     <h4>Effet n°{{ item }}</h4>
-                    <v-text-field placeholder="Nom de l'effet" :name="setName(effects[0], item)" v-model="technicalSheet.effects.physic.name[item]" />
+                    <v-text-field
+                      placeholder="Nom de l'effet"
+                      :name="setName(effects[0], item)"
+                      v-model="technicalSheet.effects.physic.name[item]"
+                    />
                     <v-textarea
                       box
                       :name="setDescribeName(effects[0], item)"
@@ -115,20 +119,51 @@
           <v-btn @click="addUrlReference">Ajout d'une référence</v-btn>
         </ul>
       </v-form>
-      <v-btn @click="testForm">test form</v-btn>
+
+    </div>
+    <div v-else class="container">
+      <TechnicalSheet :technical-sheet="this.technicalSheet" />
+      <v-radio-group v-model="technicalSheet.isFinish" :mandatory="false">
+        <v-container>
+          <v-layout>
+            <v-flex md=6>
+              <v-radio label="Sauvegarder temporairement la fiche technique" value="false" />
+            </v-flex>
+            <v-flex md=6>
+              <v-radio label="Valider la fiche technique" value="true" />
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-radio-group>
+
+    </div>
+    <div class="container">
+      <v-btn @click="previewChange">
+        <span v-if="preview">Editer à nouveau la fiche technique</span>
+        <span v-else>Voir la prévisualisation de la fiche technique</span>
+      </v-btn>
+      <v-btn v-if="preview" @click="sendFormToBackEnd">send to back end</v-btn>
     </div>
   </div>
 </template>
 <script>
+import TechnicalSheet from './TechnicalSheet'
+import axios from 'Axios'
 export default {
   name: 'TechnicalSheetCreation',
+  components: {
+    TechnicalSheet
+  },
   data: () => ({
-    inputPhysicEffect: 1,
-    inputCognitifEffect: 1,
-    inputIndesirableEffect: 1,
-    inputUrlReference: 1,
+    preview: false,
+    valid: false,
+    rulesName: [
+      v => !!v || 'Le nom de l\'effet physique est requis.',
+      v => v.length > 2 || 'L\'effet physique doit faire au moins trois caractères.'
+    ],
     effects: ['physicEffect', 'cognitifEffect', 'indesirableEffect'],
     technicalSheet: {
+      isFinish: 'false',
       name: '',
       pharmacologie: '',
       chimie: '',
@@ -197,8 +232,21 @@ export default {
     setUrlName (str) {
       return 'urlName' + str
     },
-    testForm () {
-      console.log(this.technicalSheet)
+    previewChange () {
+      if (this.preview === true) {
+        this.preview = false
+      } else {
+        this.preview = true
+      }
+    },
+    sendFormToBackEnd () {
+      axios.post('http://localhost:3000/api/v1/technicalsheet/create', {
+        technicalsheet: this.technicalSheet
+      }).then(response => {
+        console.log(response)
+      }).catch(err => {
+        console.error(err)
+      })
     }
   }
 }

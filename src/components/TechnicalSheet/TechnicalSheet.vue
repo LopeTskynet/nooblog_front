@@ -2,13 +2,13 @@
   <div id="technicalSheet">
 
     <div class="container">
-      <h2>Fiche technique<br>Lorem Ipsum</h2>
+      <h2>Fiche technique<br>{{ technicalSheet.name }}</h2>
       <v-card>
         <v-card-title>
           <h3>Pharmacologie :</h3>
         </v-card-title>
         <v-card-text class="text-sm-left">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ex eros, euismod vel magna ac, eleifend tincidunt est. Aenean viverra tortor lorem, ut rutrum mi dapibus ut. Duis scelerisque cursus justo ut convallis. Praesent eleifend, felis id ultrices scelerisque, lacus magna pretium eros, nec aliquam velit nisi nec lorem. Fusce pulvinar nisl vestibulum nunc sagittis viverra. Suspendisse convallis ligula nisl, et bibendum ligula faucibus non. Sed nec vulputate diam. Nulla facilisi. Vivamus ut ex ullamcorper, pretium elit vitae, egestas nibh. Fusce arcu mauris, iaculis quis lorem sit amet, egestas sagittis felis. Nam iaculis convallis sollicitudin.
+          {{ technicalSheet.pharmacologie }}
         </v-card-text>
       </v-card>
       <v-card>
@@ -16,7 +16,7 @@
           <h3>Chimie :</h3>
         </v-card-title>
         <v-card-text class="text-sm-left">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ex eros, euismod vel magna ac, eleifend tincidunt est. Aenean viverra tortor lorem, ut rutrum mi dapibus ut. Duis scelerisque cursus justo ut convallis. Praesent eleifend, felis id ultrices scelerisque, lacus magna pretium eros, nec aliquam velit nisi nec lorem. Fusce pulvinar nisl vestibulum nunc sagittis viverra. Suspendisse convallis ligula nisl, et bibendum ligula faucibus non. Sed nec vulputate diam. Nulla facilisi. Vivamus ut ex ullamcorper, pretium elit vitae, egestas nibh. Fusce arcu mauris, iaculis quis lorem sit amet, egestas sagittis felis. Nam iaculis convallis sollicitudin.
+          {{ technicalSheet.chimie }}
         </v-card-text>
       </v-card>
       <v-card>
@@ -29,24 +29,24 @@
               <v-flex md4 xs12>
                 <h4>Physique</h4>
                 <ul>
-                  <li v-for="item in physicEffect" :key="item">
-                    <span class="itemNameList">{{ item[0] }}<span v-if="!item[1] == ''">:</span></span> {{ item[1] }}
+                  <li v-for="item in technicalSheet.effects.physic.counter" :key="item">
+                    <span class="itemNameList">{{ technicalSheet.effects.physic.name[item] }}<span v-if="!technicalSheet.effects.physic.describe[item] == ''">:</span></span> {{ technicalSheet.effects.physic.describe[item] }}
                   </li>
                 </ul>
               </v-flex>
               <v-flex md4 xs12>
                 <h4>Cognitif</h4>
                 <ul>
-                  <li v-for="item in cognitifEffect" :key="item">
-                    <span class="itemNameList">{{ item[0] }}<span v-if="!item[1] == ''">:</span></span> {{ item[1] }}
+                  <li v-for="item in technicalSheet.effects.cognitif.counter" :key="item">
+                    <span class="itemNameList">{{ technicalSheet.effects.cognitif.name[item] }}<span v-if="!technicalSheet.effects.cognitif.describe[item] == ''">:</span></span> {{ technicalSheet.effects.cognitif.describe[item] }}
                   </li>
                 </ul>
               </v-flex>
               <v-flex md4 xs12>
                 <h4>Indésirable</h4>
                 <ul>
-                  <li v-for="item in sideEffect" :key="item">
-                    <span class="itemNameList">{{ item[0] }}<span v-if="!item[1] == ''">:</span></span> {{ item[1] }}
+                  <li v-for="item in technicalSheet.effects.indesirable.counter" :key="item">
+                    <span class="itemNameList">{{ technicalSheet.effects.indesirable.name[item] }}<span v-if="!technicalSheet.effects.indesirable.describe[item] == ''">:</span></span> {{ technicalSheet.effects.indesirable.describe[item] }}
                   </li>
                 </ul>
               </v-flex>
@@ -60,7 +60,7 @@
           <h3>Toxicité et interaction potentielle :</h3>
         </v-card-title>
         <v-card-text class="text-sm-left">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ex eros, euismod vel magna ac, eleifend tincidunt est. Aenean viverra tortor lorem, ut rutrum mi dapibus ut. Duis scelerisque cursus justo ut convallis. Praesent eleifend, felis id ultrices scelerisque, lacus magna pretium eros, nec aliquam velit nisi nec lorem. Fusce pulvinar nisl vestibulum nunc sagittis viverra. Suspendisse convallis ligula nisl, et bibendum ligula faucibus non. Sed nec vulputate diam. Nulla facilisi. Vivamus ut ex ullamcorper, pretium elit vitae, egestas nibh. Fusce arcu mauris, iaculis quis lorem sit amet, egestas sagittis felis. Nam iaculis convallis sollicitudin.
+          {{ technicalSheet.toxicity }}
         </v-card-text>
       </v-card>
       <v-card>
@@ -69,8 +69,8 @@
         </v-card-title>
         <v-card-text>
           <ul class="referenceList">
-            <li v-for="item in reference" :key="item">
-              <a :href="item">{{ item }}</a>
+            <li v-for="item in technicalSheet.references.counter" :key="item">
+              <a :href="technicalSheet.references.urlTab[item]">{{ technicalSheet.references.urlTab[item] }}</a>
             </li>
           </ul>
         </v-card-text>
@@ -82,26 +82,13 @@
 <script>
 export default {
   name: 'TechnicalSheet',
+  props: {
+    technicalSheet: {
+      type: Object,
+      required: true
+    }
+  },
   data: () => ({
-    physicEffect: {
-      'title1': ['concentration', 'Lorem ispum dolor sit amet si si lorem ispum dolor sit Lorem ispum dolor sit amet si si lorem ispum dolor sit '],
-      'title2': ['relaxation', 'Lorem ispum dolor sit amet si si lorem ispum dolor sit Lorem ispum dolor sit amet si si lorem ispum dolor sit '],
-      'title3': ['augmentation du débit sanguin', 'Lorem ispum dolor sit amet si si lorem ispum dolor sit Lorem ispum dolor sit amet si si lorem ispum dolor sit'],
-      'title4': ['dilation des pupilles', '']
-    },
-    cognitifEffect: {
-      'title1': ['concentration', 'Lorem ispum dolor sit amet si si lorem ispum dolor sit Lorem ispum dolor sit amet si si lorem ispum dolor sit '],
-      'title2': ['relaxation', 'Lorem ispum dolor sit amet si si lorem ispum dolor sit Lorem ispum dolor sit amet si si lorem ispum dolor sit '],
-      'title3': ['augmentation du débit sanguin', 'Lorem ispum dolor sit amet si si lorem ispum dolor sit Lorem ispum dolor sit amet si si lorem ispum dolor sit'],
-      'title4': ['dilation des pupilles', '']
-    },
-    sideEffect: {
-      'title1': ['concentration', 'Lorem ispum dolor sit amet si si lorem ispum dolor sit Lorem ispum dolor sit amet si si lorem ispum dolor sit '],
-      'title2': ['relaxation', 'Lorem ispum dolor sit amet si si lorem ispum dolor sit Lorem ispum dolor sit amet si si lorem ispum dolor sit '],
-      'title3': ['augmentation du débit sanguin', 'Lorem ispum dolor sit amet si si lorem ispum dolor sit Lorem ispum dolor sit amet si si lorem ispum dolor sit'],
-      'title4': ['dilation des pupilles', '']
-    },
-    reference: ['www.google.fr', 'www.quora.com', 'www.wikipedia.org']
   })
 }
 </script>
