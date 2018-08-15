@@ -13,22 +13,20 @@
 
               <li class="title" v-else>
 
-                <router-link :to="{name:'Connexion'}" class="text-xs-center">
-                  <v-menu offset-y>
-                    <v-btn slot="activator" class="btnHeader">
-                      Welcome {{ this.$store.getters.getPseudo }}
-                    </v-btn>
-                    <v-list>
-                      <v-list-tile @click="mockButton">
-                        <v-list-tile-title>
-                          <router-link :to="{name:'Parameter'}">
-                            parametre
-                          </router-link>
-                        </v-list-tile-title>
-                      </v-list-tile>
-                    </v-list>
-                  </v-menu>
-                </router-link>
+                <v-menu offset-y>
+                  <v-btn slot="activator" class="btnHeader">
+                    Welcome {{ this.$store.getters.getPseudo }}
+                  </v-btn>
+                  <v-list>
+                    <v-list-tile @click="mockButton">
+                      <v-list-tile-title>
+                        <router-link :to="{name:'Parameter'}">
+                          <v-icon dark>account_circle</v-icon> Parametre
+                        </router-link>
+                      </v-list-tile-title>
+                    </v-list-tile>
+                  </v-list>
+                </v-menu>
 
               </li>
 
@@ -239,4 +237,8 @@ export default {
   color:white;
 }
 
+/* CSS GLOBAL */
+#app li {
+  list-style:none;
+}
 </style>

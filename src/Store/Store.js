@@ -7,6 +7,7 @@ const state = {
   first_name: '',
   last_name: '',
   pseudo: '',
+  email: '',
   token: ''
 }
 
@@ -15,6 +16,7 @@ const getters = {
   getFirstName: state => state.first_name,
   getLastName: state => state.last_name,
   getPseudo: state => state.pseudo,
+  getEmail: state => state.email,
   getToken: state => state.token
 }
 const actions = {
@@ -69,6 +71,18 @@ const actions = {
     })
   },
 
+  setEmail: ({ commit, state }, email) => {
+    return new Promise((resolve, reject) => {
+      // le nom doit faire au moins deux caractères
+      if (email && email.length >= 2) {
+        resolve()
+        commit('setLastName', email)
+      } else {
+        reject(new Error('les noms doivent faire au moins deux caractères: "' + email + '"'))
+      }
+    })
+  },
+
   setToken: ({ commit, state }, token) => {
     return new Promise((resolve, reject) => {
       // Il faudra rajouter des contrôles ici
@@ -94,6 +108,9 @@ const mutations = {
   },
   setLastName: (state, lastName) => {
     state.last_name = lastName
+  },
+  setEmail: (state, email) => {
+    state.email = email
   },
   setToken: (state, token) => {
     state.token = token
