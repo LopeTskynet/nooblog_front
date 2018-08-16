@@ -12,7 +12,7 @@
                     Prénom:
                   </v-flex>
                   <v-flex md9 xs12>
-                    <input type="text" v-model="this.account.firstname">
+                    <input type="text" v-model="account.firstname">
                   </v-flex>
                 </v-layout>
               </li>
@@ -22,7 +22,7 @@
                     Nom:
                   </v-flex>
                   <v-flex md9 xs12>
-                    <input type="text" v-model="this.account.lastname">
+                    <input type="text" v-model="account.lastname">
                   </v-flex>
                 </v-layout>
               </li>
@@ -32,7 +32,7 @@
                     Pseudo:
                   </v-flex>
                   <v-flex md9 xs12>
-                    <input type="text" v-model="this.account.pseudo">
+                    <input type="text" v-model="account.pseudo">
                   </v-flex>
                 </v-layout>
               </li>
@@ -42,7 +42,7 @@
                     Email:
                   </v-flex>
                   <v-flex md9 xs12>
-                    <input type="text" v-model="this.account.email">
+                    <input type="text" v-model="account.email">
                   </v-flex>
                 </v-layout>
               </li>
@@ -58,9 +58,9 @@
                   <v-flex md9 xs12>
                     <input v-if="lock" type="password" class="transition" :class="stylus" value="         ">
                     <span v-else>
-                      <input type="password" placeholder="ancien mot de passe" class="transition" :class="stylus" v-model="this.account.oldpassword"><br>
-                      <input type="password" placeholder="nouveau mot de passe" class="transition" :class="stylus" v-model="this.account.newpassword"><br>
-                      <input type="password" placeholder="nouveau mot de passe" class="transition" :class="stylus" v-model="this.account.verifpassword">
+                      <input type="password" placeholder="ancien mot de passe" class="transition" :class="stylus" v-model="account.oldpassword"><br>
+                      <input type="password" placeholder="nouveau mot de passe" class="transition" :class="stylus" v-model="account.newpassword"><br>
+                      <input type="password" placeholder="nouveau mot de passe" class="transition" :class="stylus" v-model="account.verifpassword">
                     </span>
                   </v-flex>
                 </v-layout>
@@ -81,6 +81,7 @@
   </div>
 </template>
 <script>
+import axios from 'Axios'
 export default {
   name: 'Parameter',
   data: () => ({
@@ -109,7 +110,15 @@ export default {
       }, 1000)
     },
     updateData () {
-      console.log(this.$store.getters)
+      axios.put('http://localhost:3000/api/v1/users/update/', {
+        pseudo: this.account.pseudo,
+        token: this.$store.getters.getToken,
+        account: this.account
+      }).then(response => {
+        console.log(response)
+      }).catch(err => {
+        console.error(err)
+      })
     }
   },
   mounted () {
