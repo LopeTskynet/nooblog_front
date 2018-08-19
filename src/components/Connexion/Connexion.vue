@@ -101,6 +101,12 @@ export default {
         console.log('response value :' + response.data)
         if (response.data) {
           console.log(response.data)
+          sessionStorage.first_name = response.data.first_name
+          sessionStorage.last_name = response.data.last_name
+          sessionStorage.pseudo = response.data.pseudo
+          sessionStorage.email = response.data.email
+          sessionStorage.token = response.data.token
+          sessionStorage.isConnected = true
           this.$store.commit('setFirstName', response.data.first_name)
           this.$store.commit('setLastName', response.data.last_name)
           this.$store.commit('setPseudo', response.data.pseudo)

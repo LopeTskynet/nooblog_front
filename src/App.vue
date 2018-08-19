@@ -143,6 +143,17 @@ export default {
       this.$store.commit('setEmail', '')
       this.$store.commit('setToken', '')
       this.$store.commit('setIsConnected', false)
+      sessionStorage.clear()
+    }
+  },
+  mounted () {
+    if (sessionStorage.first_name && sessionStorage.last_name && sessionStorage.pseudo && sessionStorage.email && sessionStorage.token && sessionStorage.token && sessionStorage.isConnected) {
+      this.$store.commit('setFirstName', sessionStorage.first_name)
+      this.$store.commit('setLastName', sessionStorage.last_name)
+      this.$store.commit('setPseudo', sessionStorage.pseudo)
+      this.$store.commit('setEmail', sessionStorage.email)
+      this.$store.commit('setToken', sessionStorage.token)
+      this.$store.commit('setIsConnected', true)
     }
   }
 }
