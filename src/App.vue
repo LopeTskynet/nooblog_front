@@ -9,7 +9,7 @@
           <v-flex xs12 md6>
             <ul>
               <li v-if="this.$store.getters.getIsConnected && this.$store.getters.getRole === 'admin'">
-                <v-btn color="blue darken-2">
+                <v-btn color="blue darken-2" @click="setMenuAdmin">
                   pannel d'administration
                 </v-btn>
               </li>
@@ -62,20 +62,12 @@
 
       <v-layout row wrap>
 
-        <v-flex md2>
-          <div class="navBarLeft">
-            <ul class="headline">
-              <li><a href="#"><router-link :to="{name:'LastArticle'}"><i class="ti-write" />Dernier articles</router-link></a></li>
-              <li><a href="#"><i class="ti-archive" />Articles par catégories</a></li>
-              <li><a href="#"><i class="ti-archive" />Articles par effets</a></li>
-              <li><a href="#"><i class="ti-book" />Tous les articles</a></li>
-              <li><a href="#"><i class="ti-hand-point-right" />Tout ce que vous devez savoir</a></li>
-              <li><a href="#"><i class="ti-info-alt" />F.A.Q</a></li>
-              <li><a href="#"><i class="ti-user" />Rejoindre l'équipe ?</a></li>
-              <li><v-btn @click="testStore">test store and token</v-btn></li>
-            </ul>
-            <div class="movingArrow " :class="arrow" />
-          </div>
+        <v-flex v-if="!menuAdmin" md2>
+          <Menu />
+        </v-flex>
+
+        <v-flex v-else md2>
+          <MenuAdmin />
         </v-flex>
 
         <v-flex md8>
@@ -99,14 +91,19 @@ import Vue from 'vue'
 import Vuetify from 'vuetify'
 import theme from './theme'
 import axios from 'Axios'
+import Menu from '@/components/UI/Menu'
+import MenuAdmin from '@/components/UI/MenuAdmin'
 Vue.use(Vuetify, theme)
 export default {
   name: 'App',
   components: {
-    'FicheTechnique': FicheTechnique
+    'FicheTechnique': FicheTechnique,
+    'Menu': Menu,
+    'MenuAdmin': MenuAdmin
   },
   data: () => ({
-    arrow: 'movingArrowMenu'
+    arrow: 'movingArrowMenu',
+    menuAdmin: false
   }),
   methods: {
     testStore () {
@@ -138,6 +135,13 @@ export default {
       this.$store.commit('setToken', '')
       this.$store.commit('setIsConnected', false)
       sessionStorage.clear()
+    },
+    setMenuAdmin () {
+      if (this.menuAdmin === false) {
+        this.menuAdmin = true
+      } else {
+        this.menuAdmin = false
+      }
     }
   },
   mounted () {
@@ -196,49 +200,6 @@ export default {
 #app input{
   background:white;
   padding: 5px 10px 5px 10px;
-}
-#app .navBarLeft{
-  text-align:left;
-  padding:15px;
-  border-radius:6px;
-  box-shadow:0 2px 2px hsla(38,16%,76%,.5);
-  background: #212120;
-}
-#app .navBarLeft ul{
-  list-style:none;
-  padding-top:15px;
-}
-#app .navBarLeft ul li{
-  margin-bottom: 15px;
-  margin-top:15px;
-  padding-top:10px;
-  padding-bottom:10px;
-  font-size:12px;
-  text-transform: uppercase;
-}
-#app .navBarLeft ul li i{
-  font-size:24px;
-  font-weight:bold;
-  margin-right: 15px;
-  float:left;
-  height:30px;
-  width:30px;
-  color:rgba(255, 255, 255, 0.7);
-}
-#app .navBarLeft ul li a{
-  line-height:30px;
-  color:rgba(255, 255, 255, 0.7);
-  text-decoration:none;
-}
-#app .navBarLeft .movingArrow{
-  border-right: 17px solid #f4f3ef;
-  border-top : 17px solid transparent;
-  border-bottom : 17px solid transparent;
-  display:inline-block;
-  position:absolute;
-  left: 338px;
-  top:206px;
-  transition: all 0.5s cubic-bezier(0.29, 1.42, 0.79, 1);
 }
 
 /* CSS GLOBAL */
