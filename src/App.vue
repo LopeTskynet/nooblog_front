@@ -5,6 +5,12 @@
         <v-layout row wrap class="backgroundNavbar">
           <v-flex xs12>
             <ul>
+              <li v-if="this.$store.getters.getIsConnected && this.$store.getters.getRole === 'admin'">
+                <v-btn color="blue darken-2">
+                  pannel d'administration
+                </v-btn>
+              </li>
+
               <li class="title" v-if="!this.$store.getters.getIsConnected">
                 <router-link :to="{name:'Connexion'}">
                   <v-btn class="btnHeader">connexion</v-btn>
@@ -147,12 +153,13 @@ export default {
     }
   },
   mounted () {
-    if (sessionStorage.first_name && sessionStorage.last_name && sessionStorage.pseudo && sessionStorage.email && sessionStorage.token && sessionStorage.token && sessionStorage.isConnected) {
+    if (sessionStorage.first_name && sessionStorage.last_name && sessionStorage.pseudo && sessionStorage.email && sessionStorage.token && sessionStorage.token && sessionStorage.isConnected && sessionStorage.role) {
       this.$store.commit('setFirstName', sessionStorage.first_name)
       this.$store.commit('setLastName', sessionStorage.last_name)
       this.$store.commit('setPseudo', sessionStorage.pseudo)
       this.$store.commit('setEmail', sessionStorage.email)
       this.$store.commit('setToken', sessionStorage.token)
+      this.$store.commit('setRole', sessionStorage.role)
       this.$store.commit('setIsConnected', true)
     }
   }

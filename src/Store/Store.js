@@ -8,7 +8,8 @@ const state = {
   last_name: '',
   pseudo: '',
   email: '',
-  token: ''
+  token: '',
+  role: ''
 }
 
 const getters = {
@@ -17,7 +18,8 @@ const getters = {
   getLastName: state => state.last_name,
   getPseudo: state => state.pseudo,
   getEmail: state => state.email,
-  getToken: state => state.token
+  getToken: state => state.token,
+  getRole: state => state.role
 }
 const actions = {
   setPseudo: ({ commit, state }, pseudo) => {
@@ -93,6 +95,18 @@ const actions = {
         reject(new Error('le token doit exister: "' + token + '"'))
       }
     })
+  },
+
+  setRole: ({ commit, state }, role) => {
+    return new Promise((resolve, reject) => {
+      // Il faudra rajouter des contrôles ici
+      if (role) {
+        resolve()
+        commit('setToken', role)
+      } else {
+        reject(new Error('le role doit exister: "' + role + '"'))
+      }
+    })
   }
 }
 
@@ -114,6 +128,9 @@ const mutations = {
   },
   setToken: (state, token) => {
     state.token = token
+  },
+  setRole: (state, role) => {
+    state.role = role
   }
 }
 

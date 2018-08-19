@@ -82,12 +82,14 @@ export default {
             sessionStorage.pseudo = response.data.pseudo
             sessionStorage.email = response.data.email
             sessionStorage.token = response.data.token
+            sessionStorage.role = response.data.role
             sessionStorage.isConnected = true
             this.$store.commit('setFirstName', response.data.first_name)
             this.$store.commit('setLastName', response.data.last_name)
             this.$store.commit('setPseudo', response.data.pseudo)
             this.$store.commit('setEmail', response.data.email)
             this.$store.commit('setToken', response.data.token)
+            this.$store.commit('setRole', response.data.role)
             this.$store.commit('setIsConnected', true)
             this.$router.push('/')
             console.log('the user is now connected')
@@ -112,12 +114,14 @@ export default {
           sessionStorage.pseudo = response.data.pseudo
           sessionStorage.email = response.data.email
           sessionStorage.token = response.data.token
+          sessionStorage.role = response.data.role
           sessionStorage.isConnected = true
           this.$store.commit('setFirstName', response.data.first_name)
           this.$store.commit('setLastName', response.data.last_name)
           this.$store.commit('setPseudo', response.data.pseudo)
           this.$store.commit('setEmail', response.data.email)
           this.$store.commit('setToken', response.data.token)
+          this.$store.commit('setRole', response.data.role)
           this.$store.commit('setIsConnected', true)
           console.log('store :' + this.$store.state.first_name)
           this.$router.push('/')
