@@ -14,7 +14,7 @@
               <li class="title" v-else>
 
                 <v-menu offset-y>
-                  <v-btn slot="activator" class="btnHeader">
+                  <v-btn slot="activator" class="btnHeader" color="blue darken-2">
                     Welcome {{ this.$store.getters.getPseudo }}
                   </v-btn>
                   <v-list>
@@ -23,6 +23,11 @@
                         <router-link :to="{name:'Parameter'}">
                           <v-icon dark>account_circle</v-icon> Parametre
                         </router-link>
+                      </v-list-tile-title>
+                    </v-list-tile>
+                    <v-list-tile @click="disconnect()">
+                      <v-list-tile-title>
+                        <v-icon dark>power_settings_new</v-icon> Se déconnecter
                       </v-list-tile-title>
                     </v-list-tile>
                   </v-list>
@@ -37,8 +42,6 @@
                   </v-btn>
                 </router-link>
               </li>
-
-              <li class="title">mon compte</li>
             </ul>
           </v-flex>
         </v-layout>
@@ -131,6 +134,15 @@ export default {
     },
     mockButton () {
       console.log('button press')
+    },
+    disconnect () {
+      console.log('disco')
+      this.$store.commit('setFirstName', '')
+      this.$store.commit('setLastName', '')
+      this.$store.commit('setPseudo', '')
+      this.$store.commit('setEmail', '')
+      this.$store.commit('setToken', '')
+      this.$store.commit('setIsConnected', false)
     }
   }
 }
@@ -154,8 +166,8 @@ export default {
   text-decoration: none;
   color: black;
 }
-#app header a .btnHeader{
-   box-shadow:none
+#app header .btnHeader{
+   box-shadow:none;
 }
 #app header .noPaddingTop{
   padding-top:0px;
@@ -171,8 +183,6 @@ export default {
   display:inline;
   margin-right:10px;
   color:white;
-  border: 2px solid white;
-  border-radius: 20px;
   padding: 5px 10px 5px 10px;
 }
 #app header ul li a{
@@ -229,12 +239,6 @@ export default {
   left: 338px;
   top:206px;
   transition: all 0.5s cubic-bezier(0.29, 1.42, 0.79, 1);
-}
-
-/* Style for menu account */
-#app .list{
-  background-color:#5e35b1;
-  color:white;
 }
 
 /* CSS GLOBAL */
