@@ -77,14 +77,20 @@ export default {
           password: this.password
         }).then(response => {
           if (response.data) {
-            console.log(response.data)
+            sessionStorage.first_name = response.data.first_name
+            sessionStorage.last_name = response.data.last_name
+            sessionStorage.pseudo = response.data.pseudo
+            sessionStorage.email = response.data.email
+            sessionStorage.token = response.data.token
+            sessionStorage.isConnected = true
             this.$store.commit('setFirstName', response.data.first_name)
             this.$store.commit('setLastName', response.data.last_name)
             this.$store.commit('setPseudo', response.data.pseudo)
             this.$store.commit('setEmail', response.data.email)
             this.$store.commit('setToken', response.data.token)
             this.$store.commit('setIsConnected', true)
-            console.log('store :' + this.$store.state.first_name)
+            this.$router.push('/')
+            console.log('the user is now connected')
           } else {
             console.log('bad login or password')
           }
@@ -114,6 +120,7 @@ export default {
           this.$store.commit('setToken', response.data.token)
           this.$store.commit('setIsConnected', true)
           console.log('store :' + this.$store.state.first_name)
+          this.$router.push('/')
         } else {
           console.log('bad login or password')
         }
