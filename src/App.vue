@@ -1,9 +1,12 @@
 <template>
   <div id="app" data-app light>
     <header>
-      <v-container grid-list-md class="noPaddingTop">
+      <v-container grid-list-md class="noPadding">
         <v-layout row wrap class="backgroundNavbar">
-          <v-flex xs12>
+          <v-flex xs12 md6>
+            <h1 class="title">Nooblog</h1>
+          </v-flex>
+          <v-flex xs12 md6>
             <ul>
               <li v-if="this.$store.getters.getIsConnected && this.$store.getters.getRole === 'admin'">
                 <v-btn color="blue darken-2">
@@ -51,26 +54,11 @@
             </ul>
           </v-flex>
         </v-layout>
-        <v-layout row wrap>
-
-          <v-flex xs6>
-            <h1 class="display-3">Nooblog</h1>
-            <span class="subheading">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et mattis turpis.</span>
-          </v-flex>
-
-          <v-flex xs6>
-
-            <div class="containerSearchBar">
-              <v-text-field id="searchInput" name="search-bar" label="Rechercher..." />
-            </div>
-          </v-flex>
-
-        </v-layout>
 
       </v-container>
     </header>
 
-    <v-container grid-list-md>
+    <v-container grid-list-md class="noPadding">
 
       <v-layout row wrap>
 
@@ -178,20 +166,16 @@ export default {
 }
 #app header{
   background: linear-gradient(70deg, #01579B, #00ACC1);
-  border-bottom: 6px solid rgba(100,100,100,0.5);
 }
 #app header a{
   text-decoration: none;
   color: black;
 }
-#app header .btnHeader{
-   box-shadow:none;
+#app .noPadding{
+  padding:0px;
 }
-#app header .noPaddingTop{
-  padding-top:0px;
-}
-#app header .backgroundNavbar{
-  padding: 20px;
+#app header .backgroundNavbar h1{
+  line-height:50px !important;
 }
 #app header ul{
   list-style:none;
@@ -199,9 +183,7 @@ export default {
 }
 #app header ul li{
   display:inline;
-  margin-right:10px;
   color:white;
-  padding: 5px 10px 5px 10px;
 }
 #app header ul li a{
   color:white;
@@ -262,5 +244,8 @@ export default {
 /* CSS GLOBAL */
 #app li {
   list-style:none;
+}
+#app .container{
+  max-width:none;
 }
 </style>
