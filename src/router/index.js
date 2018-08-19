@@ -8,6 +8,7 @@ import ArticleCreation from '@/components/Article/ArticleCreation'
 import ArticlePreview from '@/components/Article/ArticlePreview'
 import LastArticle from '@/components/ArticleManagement/LastArticle'
 import TechnicalSheet from '@/components/TechnicalSheet/TechnicalSheet'
+import TechnicalSheetAll from '@/components/TechnicalSheet/TechnicalSheetAll'
 import TechnicalSheetCreation from '@/components/TechnicalSheet/TechnicalSheetCreation'
 Vue.use(Router)
 
@@ -57,6 +58,11 @@ export default new Router({
       path: '/fichetechnique/creation',
       name: 'TechnicalSheetCreation',
       component: TechnicalSheetCreation
+    },
+    {
+      path: '/allfichetechnique',
+      name: 'TechnicalSheetAll',
+      component: TechnicalSheetAll
     }
   ]
 })

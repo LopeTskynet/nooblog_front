@@ -17,7 +17,7 @@
     "axios": "^0.18.0",
     "import": "0.0.6",
     "material-design-icons-iconfont": "^3.0.3",
-    "node-sass": "^4.9.2",
+    "node-sass": "^4.9.3",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
     "vue": "^2.5.2",
