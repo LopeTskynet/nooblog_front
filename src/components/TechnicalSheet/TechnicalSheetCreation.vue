@@ -148,7 +148,7 @@
 </template>
 <script>
 import TechnicalSheet from './TechnicalSheet'
-import axios from 'Axios'
+import axios from 'axios'
 export default {
   name: 'TechnicalSheetCreation',
   components: {

@@ -90,7 +90,7 @@ import FicheTechnique from '@/components/Article/FicheTechnique'
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import theme from './theme'
-import axios from 'Axios'
+import axios from 'axios'
 import Menu from '@/components/UI/Menu'
 import MenuAdmin from '@/components/UI/MenuAdmin'
 Vue.use(Vuetify, theme)

@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import axios from 'Axios'
+import axios from 'axios'
 export default {
   name: 'LastArticle',
   data: () => ({
