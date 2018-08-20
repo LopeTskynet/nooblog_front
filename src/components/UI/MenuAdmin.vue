@@ -15,7 +15,7 @@
                   <router-link :to="{name:'ArticleCreation'}">Création</router-link>
                 </v-card-text>
                 <v-card-text class="paddingLeft">
-                  Article en cours
+                  <router-link :to="{name:'InProgressArticle'}">Article en cours</router-link>
                 </v-card-text>
                 <v-card-text class="paddingLeft">
                   Editer un article

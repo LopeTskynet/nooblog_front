@@ -10,6 +10,7 @@ import LastArticle from '@/components/ArticleManagement/LastArticle'
 import TechnicalSheet from '@/components/TechnicalSheet/TechnicalSheet'
 import TechnicalSheetCreation from '@/components/TechnicalSheet/TechnicalSheetCreation'
 import Parameter from '@/components/AccountManagement/Parameter'
+import InProgressArticle from '@/components/ArticleManagement/InProgressArticle'
 Vue.use(Router)
 
 export default new Router({
@@ -63,6 +64,11 @@ export default new Router({
       path: '/account/parametre',
       name: 'Parameter',
       component: Parameter
+    },
+    {
+      path: '/article/inprogress',
+      name: 'InProgressArticle',
+      component: InProgressArticle
     }
   ]
 })
