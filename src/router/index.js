@@ -70,6 +70,11 @@ export default new Router({
       path: '/article/inprogress',
       name: 'InProgressArticle',
       component: InProgressArticle
+    },
+    {
+      path: '/allfichetechnique',
+      name: 'TechnicalSheetAll',
+      component: TechnicalSheetAll
     }
   ]
 })
