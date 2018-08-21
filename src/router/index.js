@@ -8,7 +8,6 @@ import ArticleCreation from '@/components/Article/ArticleCreation'
 import ArticlePreview from '@/components/Article/ArticlePreview'
 import LastArticle from '@/components/ArticleManagement/LastArticle'
 import TechnicalSheet from '@/components/TechnicalSheet/TechnicalSheet'
-import TechnicalSheetAll from '@/components/TechnicalSheet/TechnicalSheetAll'
 import TechnicalSheetCreation from '@/components/TechnicalSheet/TechnicalSheetCreation'
 import Parameter from '@/components/AccountManagement/Parameter'
 import InProgressArticle from '@/components/ArticleManagement/InProgressArticle'
@@ -70,11 +69,6 @@ export default new Router({
       path: '/article/inprogress',
       name: 'InProgressArticle',
       component: InProgressArticle
-    },
-    {
-      path: '/allfichetechnique',
-      name: 'TechnicalSheetAll',
-      component: TechnicalSheetAll
     }
   ]
 })
