@@ -169,7 +169,8 @@ export default {
   text-align:center;
 }
 #app header{
-  background: linear-gradient(70deg, #01579B, #00ACC1);
+  background: rgb(60,141,188);
+  min-height:60px;
 }
 #app header a{
   text-decoration: none;
@@ -190,6 +191,14 @@ export default {
   color:white;
 }
 #app header ul li a{
+  color:white;
+  text-decoration:none;
+}
+#app .v-list{
+  background:rgb(25, 118, 210,0.8);
+  color:white;
+}
+#app .v-list a{
   color:white;
   text-decoration:none;
 }
