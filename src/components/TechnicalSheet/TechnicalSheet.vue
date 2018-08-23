@@ -30,7 +30,7 @@
                 <h4>Physique</h4>
                 <ul>
                   <li v-for="item in technicalSheet.effects.physic.counter" :key="item">
-                    <span class="itemNameList">{{ technicalSheet.effects.physic.name[item] }}<span v-if="!technicalSheet.effects.physic.describe[item] == ''">:</span></span> {{ technicalSheet.effects.physic.describe[item] }}
+                    <span class="itemNameList">{{ technicalSheet.effects.physic.name[item - 1] }}<span v-if="!technicalSheet.effects.physic.describe[item - 1] == ''">:</span></span> {{ technicalSheet.effects.physic.describe[item - 1] }}
                   </li>
                 </ul>
               </v-flex>
@@ -38,7 +38,7 @@
                 <h4>Cognitif</h4>
                 <ul>
                   <li v-for="item in technicalSheet.effects.cognitif.counter" :key="item">
-                    <span class="itemNameList">{{ technicalSheet.effects.cognitif.name[item] }}<span v-if="!technicalSheet.effects.cognitif.describe[item] == ''">:</span></span> {{ technicalSheet.effects.cognitif.describe[item] }}
+                    <span class="itemNameList">{{ technicalSheet.effects.cognitif.name[item - 1] }}<span v-if="!technicalSheet.effects.cognitif.describe[item - 1] == ''">:</span></span> {{ technicalSheet.effects.cognitif.describe[item - 1] }}
                   </li>
                 </ul>
               </v-flex>
@@ -46,7 +46,7 @@
                 <h4>Indésirable</h4>
                 <ul>
                   <li v-for="item in technicalSheet.effects.indesirable.counter" :key="item">
-                    <span class="itemNameList">{{ technicalSheet.effects.indesirable.name[item] }}<span v-if="!technicalSheet.effects.indesirable.describe[item] == ''">:</span></span> {{ technicalSheet.effects.indesirable.describe[item] }}
+                    <span class="itemNameList">{{ technicalSheet.effects.indesirable.name[item - 1] }}<span v-if="!technicalSheet.effects.indesirable.describe[item - 1] == ''">:</span></span> {{ technicalSheet.effects.indesirable.describe[item - 1] }}
                   </li>
                 </ul>
               </v-flex>
@@ -69,8 +69,8 @@
         </v-card-title>
         <v-card-text>
           <ul class="referenceList">
-            <li v-for="item in technicalSheet.references.counter" :key="item">
-              <a :href="technicalSheet.references.urlTab[item]">{{ technicalSheet.references.urlTab[item] }}</a>
+            <li v-for="item in technicalSheet.references.urlTab" :key="item">
+              <a :href="item">{{ item }}</a>
             </li>
           </ul>
         </v-card-text>

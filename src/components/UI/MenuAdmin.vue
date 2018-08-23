@@ -61,7 +61,7 @@ export default {
   text-align:left;
   padding:15px;
   box-shadow:0 2px 2px hsla(38,16%,76%,.5);
-  background: #212120;
+  background: rgb(34,45,51);
   color:white;
 }
 #app .navBarLeft ul{
