@@ -21,7 +21,6 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
 import ArticlePreview from '@/components/Article/ArticlePreview'
 export default {
   name: 'ArticleModification',
