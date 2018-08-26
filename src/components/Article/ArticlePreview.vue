@@ -44,6 +44,11 @@ export default {
     'tag': {
       type: Array,
       required: true
+    },
+    'isExist': {
+      type: String,
+      required: false,
+      default: ''
     }
   },
   data: () => ({
@@ -51,8 +56,7 @@ export default {
   }),
   methods: {
     submit () {
-      if (this.article) {
-        console.log(typeof this.radios)
+      if (this.article && this.isExist === '') {
         axios.post('http://localhost:3000/api/v1/article/create', {
           article: this.article,
           title: this.title,
@@ -60,6 +64,24 @@ export default {
           isFinish: this.radios,
           pseudo: this.$store.getters.getPseudo,
           token: this.$store.getters.getToken
+        }).then(response => {
+          if (response.data) {
+            console.log(response.data)
+          } else {
+            console.log('error')
+          }
+        }).catch(err => {
+          console.error(err)
+        })
+      } else if (this.article) {
+        axios.post('http://localhost:3000/api/v1/article/modification', {
+          article: this.article,
+          title: this.title,
+          tag: this.tag,
+          isFinish: this.radios,
+          pseudo: this.$store.getters.getPseudo,
+          token: this.$store.getters.getToken,
+          id: this.isExist
         }).then(response => {
           if (response.data) {
             console.log(response.data)
