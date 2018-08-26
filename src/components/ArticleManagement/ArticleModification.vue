@@ -21,6 +21,7 @@
   </div>
 </template>
 <script>
+import axios from 'axios'
 import ArticlePreview from '@/components/Article/ArticlePreview'
 export default {
   name: 'ArticleModification',
@@ -40,19 +41,16 @@ export default {
     myHTML: ''
   }),
   mounted () {
-    console.log('test2')
     let tagString = this.article.tag.toString()
     tagString = tagString.replace(new RegExp(',', 'g'), ' ') // convert the array into string and replace all ',' by a space
     this.title = this.article.title
     this.myHTML = this.article.article
     this.tag = tagString
-    console.log(typeof (this.article._id))
   },
   methods: {
     saveArticle () {
       if (this.preview === false) {
         this.tag = this.tag.split(' ')
-        console.log(this.tag)
         this.preview = true
       } else {
         this.preview = false

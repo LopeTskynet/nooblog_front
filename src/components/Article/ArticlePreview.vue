@@ -24,7 +24,6 @@
       </v-container>
     </v-radio-group>
     <v-btn @click="submit">Valider</v-btn>
-    <v-btn @click="testing">connecttry</v-btn>
   </div>
 </template>
 
@@ -92,17 +91,6 @@ export default {
           console.error(err)
         })
       }
-    },
-    testing () {
-      console.log(this.$store.getters.getIsConnected)
-      axios.post('http://localhost:3000/api/v1/users/isconnected', {
-        pseudo: this.$store.getters.getPseudo,
-        token: this.$store.getters.getToken
-      }).then(response => {
-        console.log(response)
-      }).catch(err => {
-        console.error(err)
-      })
     }
   }
 }
