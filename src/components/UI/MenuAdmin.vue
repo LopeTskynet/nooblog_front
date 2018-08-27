@@ -18,7 +18,7 @@
                   <router-link :to="{name:'InProgressArticle'}">Article en cours</router-link>
                 </v-card-text>
                 <v-card-text class="paddingLeft">
-                  Editer un article
+                  <router-link :to="{name:'ExistantEdition'}">Editer un article</router-link>
                 </v-card-text>
               </v-card>
             </v-expansion-panel-content>
