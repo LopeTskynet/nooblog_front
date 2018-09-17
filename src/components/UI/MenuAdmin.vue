@@ -34,7 +34,7 @@
                   <router-link :to="{name:'TechnicalSheetCreation'}">Création</router-link>
                 </v-card-text>
                 <v-card-text class="paddingLeft">
-                  Fiche technique en cours
+                  <router-link :to="{name:'InProgressTechnicalSheet'}">Fiche technique en cours</router-link>
                 </v-card-text>
                 <v-card-text class="paddingLeft">
                   Editer une fiche technique

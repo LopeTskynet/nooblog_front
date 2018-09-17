@@ -16,15 +16,15 @@
       <v-layout row wrap>
         <v-flex xs12>
           <ArticleModification :article="this.article" />
-          <v-dialog v-model="dialog" persistent max-width="290">
+          <v-dialog v-model="dialog" persistent max-width="300">
             <v-btn slot="activator">Delete</v-btn>
             <v-card class="popupTheme">
-              <v-card-title class="headline">Use Google's location service?</v-card-title>
-              <v-card-text>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</v-card-text>
+              <v-card-title class="headline">Supprimer l'article?</v-card-title>
+              <v-card-text>Voulez-vous vraiment supprimer l'article ?<br>Attention la suppression est définitive.</v-card-text>
               <v-card-actions>
                 <v-spacer />
-                <v-btn color="green darken-1" flat @click.native="dialog = false">Disagree</v-btn>
-                <v-btn color="green darken-1" flat @click.native="dialog = false, deleteArticle()">Agree</v-btn>
+                <v-btn color="green darken-1" flat @click.native="dialog = false">Annuler</v-btn>
+                <v-btn color="green darken-1" flat @click.native="dialog = false, deleteArticle()">Supprimer</v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
