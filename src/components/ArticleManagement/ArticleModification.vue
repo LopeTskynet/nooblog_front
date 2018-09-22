@@ -49,6 +49,7 @@ export default {
   methods: {
     saveArticle () {
       if (this.preview === false) {
+        // TODO : check if we can split or not (bug when you check the preview and come back, the next preview is bad because the split)
         this.tag = this.tag.split(' ')
         this.preview = true
       } else {

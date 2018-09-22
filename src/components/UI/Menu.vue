@@ -1,19 +1,21 @@
 <template>
   <div id="menu">
     <div class="navBarLeft">
-      <h2 class="text-xs-center">
-        <img src="../../../static/img/UI/medicine.png" alt="icon drugs">
-        Nooblog
-      </h2>
-      <ul class="headline">
-        <li><a href="#"><router-link :to="{name:'LastArticle'}"><i class="ti-write" />Dernier articles</router-link></a></li>
-        <li><a href="#"><i class="ti-archive" />Articles par catégories</a></li>
-        <li><a href="#"><i class="ti-archive" />Articles par effets</a></li>
-        <li><a href="#"><i class="ti-book" />Tous les articles</a></li>
-        <li><a href="#"><i class="ti-hand-point-right" />Tout ce que vous devez savoir</a></li>
-        <li><a href="#"><i class="ti-info-alt" />F.A.Q</a></li>
-        <li><a href="#"><i class="ti-user" />Rejoindre l'équipe ?</a></li>
-      </ul>
+      <div class="backgroundBlack">
+        <h2 class="text-xs-center">
+          <img src="../../../static/img/UI/medicine.png" alt="icon drugs">
+          Nooblog
+        </h2>
+        <ul class="headline">
+          <li><a href="#"><router-link :to="{name:'LastArticle'}"><i class="ti-write" />Dernier articles</router-link></a></li>
+          <li><a href="#"><i class="ti-archive" />Articles par catégories</a></li>
+          <li><a href="#"><i class="ti-archive" />Articles par effets</a></li>
+          <li><a href="#"><i class="ti-book" />Tous les articles</a></li>
+          <li><a href="#"><i class="ti-hand-point-right" />Tout ce que vous devez savoir</a></li>
+          <li><a href="#"><i class="ti-info-alt" />F.A.Q</a></li>
+          <li><a href="#"><i class="ti-user" />Rejoindre l'équipe ?</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -28,9 +30,16 @@ export default {
 <style scoped>
 #app .navBarLeft{
   text-align:left;
-  padding:15px;
   box-shadow:0 2px 2px hsla(38,16%,76%,.5);
-  background: rgb(34,45,51);
+  position:fixed;
+  height:100%;
+  background: url("../../../static/img/UI/sidebar.jpg");
+}
+#app .navBarLeft .backgroundBlack{
+  padding:15px;
+  background:black;
+  opacity:0.77;
+  height:100%;
 }
 #app .navBarLeft ul{
   list-style:none;
@@ -55,7 +64,7 @@ export default {
 }
 #app .navBarLeft ul li a{
   line-height:30px;
-  color:rgba(255, 255, 255, 0.7);
+  color:rgb(255, 255, 255);
   text-decoration:none;
 }
 #app .navBarLeft .movingArrow{
