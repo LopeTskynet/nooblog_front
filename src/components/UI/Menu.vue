@@ -8,7 +8,7 @@
         </h2>
         <ul class="headline">
           <li><a href="#"><router-link :to="{name:'LastArticle'}"><i class="ti-write" />Dernier articles</router-link></a></li>
-          <li><a href="#"><i class="ti-archive" />Articles par catégories</a></li>
+          <li><a href="#"><i class="ti-bookmark-alt" /><router-link :to="{name:'LastTechnicalSheet'}">Dernières fiches techniques</router-link></a></li>
           <li><a href="#"><i class="ti-archive" />Articles par effets</a></li>
           <li><a href="#"><i class="ti-book" />Tous les articles</a></li>
           <li><a href="#"><i class="ti-hand-point-right" />Tout ce que vous devez savoir</a></li>

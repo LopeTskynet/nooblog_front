@@ -4,9 +4,6 @@
       <v-container grid-list-md>
         <v-layout row wrap>
           <v-flex xs12 v-for="article in articleList" :key="article.id">
-            <!-- <h2 v-html="article.title" />
-            <div>TAG : <span v-html="article.tag" /></div>
-            <i><span>This article was created the </span><span v-html="article.date" /></i> -->
             <ArticleCard :article="article" />
           </v-flex>
         </v-layout>
@@ -41,11 +38,6 @@ export default {
         this.articleList.push(e)
       })
     })
-  },
-  methods: {
-    testParent () {
-      console.log('parent')
-    }
   }
 }
 </script>

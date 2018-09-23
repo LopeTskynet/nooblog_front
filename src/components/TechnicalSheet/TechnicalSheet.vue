@@ -75,6 +75,7 @@
           </ul>
         </v-card-text>
       </v-card>
+      <v-btn @click="backToListTechnicalSheet">Retour à la liste des fiches techniques</v-btn>
     </div>
   </div>
 </template>
@@ -89,7 +90,13 @@ export default {
     }
   },
   data: () => ({
-  })
+  }),
+  methods: {
+    backToListTechnicalSheet () {
+      this.$parent._data.showTechnicalsheet = 'false'
+      this.$parent._data.technicalsheet = null
+    }
+  }
 }
 </script>
 

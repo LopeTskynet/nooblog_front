@@ -15,6 +15,7 @@ import InProgressArticle from '@/components/ArticleManagement/InProgressArticle'
 import ArticleModification from '@/components/ArticleManagement/ArticleModification'
 import ExistantEdition from '@/components/ArticleManagement/ExistantEdition'
 import InProgressTechnicalSheet from '@/components/TechnicalSheetManagement/InProgressTechnicalSheet'
+import LastTechnicalSheet from '@/components/TechnicalSheetManagement/LastTechnicalSheet'
 Vue.use(Router)
 
 export default new Router({
@@ -93,6 +94,11 @@ export default new Router({
       path: '/fichetechnique/inprogress',
       name: 'InProgressTechnicalSheet',
       component: InProgressTechnicalSheet
+    },
+    {
+      path: '/fichetechnique/last',
+      name: 'LastTechnicalSheet',
+      component: LastTechnicalSheet
     }
   ]
 })

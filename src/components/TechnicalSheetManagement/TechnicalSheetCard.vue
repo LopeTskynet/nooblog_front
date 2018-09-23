@@ -1,21 +1,18 @@
 <template>
-  <div id="ArticleCard">
-    <div class="containerArticle text-xs-left" @click="loadArticle()">
-      <h3>{{ article.title }}</h3>
+  <div id="technicalSheetCard">
+    <div class="containerTc text-xs-left" @click="loadTechnicalsheet()" >
+      <h3>{{ technicalsheet.name }}</h3>
       <p class="subtitle">
-        Article posté le {{ this.date.day }} {{ this.date.month }} {{ this.date.year }}
+        Fiche postée le {{ this.date.day }} {{ this.date.month }} {{ this.date.year }}
       </p>
-      <v-chip v-for="label in article.tag" label small color="blue" text-color="white" :key="label">
-        <v-icon left>label</v-icon>{{ label }}
-      </v-chip>
     </div>
   </div>
 </template>
 <script>
 export default {
-  name: 'ArticleCard',
+  name: 'TechnicalSheetCard',
   props: {
-    'article': {
+    technicalsheet: {
       type: Object,
       required: true
     }
@@ -28,9 +25,9 @@ export default {
     }
   }),
   mounted () {
-    this.date.day = this.article.date.slice(8, 10)
-    this.date.year = this.article.date.slice(0, 4)
-    switch (this.article.date.slice(5, 7)) {
+    this.date.day = this.technicalsheet.date.slice(8, 10)
+    this.date.year = this.technicalsheet.date.slice(0, 4)
+    switch (this.technicalsheet.date.slice(5, 7)) {
       case '01':
         this.date.month = 'Janvier'
         break
@@ -72,28 +69,28 @@ export default {
     }
   },
   methods: {
-    loadArticle () {
-      console.log('loading article')
-      this.$parent._data.showArticle = 'true'
-      this.$parent._data.article = this.article
+    loadTechnicalsheet () {
+      console.log('loading the technicalsheet')
+      this.$parent._data.showTechnicalsheet = 'true'
+      this.$parent._data.technicalsheet = this.technicalsheet
     }
   }
 }
 </script>
 <style scoped>
-#app #ArticleCard{
+#app #technicalSheetCard{
   border-radius:6px;
   box-shadow:0 2px 2px hsla(38,16%,76%,.5);
 }
-#app #ArticleCard .subtitle {
+#app #technicalSheetCard .subtitle {
   color: grey;
   font-style: italic;
 }
-#app #ArticleCard .containerArticle {
+#app #technicalSheetCard .containerTc {
   padding: 10px;
   transition: 0.3s;
 }
-#app #ArticleCard .containerArticle:hover {
+#app #technicalSheetCard .containerTc:hover {
   background: rgba(0,0,0,0.8);
   color:white;
 }
