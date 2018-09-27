@@ -1,6 +1,6 @@
 <template>
   <div id="existantTSEdition">
-    <div class="container">
+    <div v-if="!this.preview" class="container">
       <h2>Création de fiche technique</h2>
       <v-form ref="form" v-model="valid" lazy-validation>
         <v-text-field label="Nom de la fiche technique" required v-model="technicalSheet.name" />
@@ -33,12 +33,12 @@
                     <h4>Effet n°{{ item }}</h4>
                     <v-text-field
                       placeholder="Nom de l'effet"
-                      v-model="technicalSheet.effects.physic.name[item]"
+                      v-model="technicalSheet.effects.physic.name[item - 1]"
                     />
                     <v-textarea
                       box
                       auto-grow
-                      v-model="technicalSheet.effects.physic.describe[item]"
+                      v-model="technicalSheet.effects.physic.describe[item - 1]"
                       placeholder="Remplir la description ici."
                     />
                     <v-btn class="btnDelete" @click="deletePhysicEffect(item)">X</v-btn>
@@ -58,12 +58,12 @@
                 <ul class="listNameEffect">
                   <li v-for="item in technicalSheet.effects.cognitif.counter" :key="item">
                     <h4>Effet n°{{ item }}</h4>
-                    <v-text-field placeholder="Nom de l'effet" :name="setName(effects[1], item)" v-model="technicalSheet.effects.cognitif.name[item]" />
+                    <v-text-field placeholder="Nom de l'effet" :name="setName(effects[1], item)" v-model="technicalSheet.effects.cognitif.name[item - 1]" />
                     <v-textarea
                       box
                       :name="setDescribeName(effects[1], item)"
                       auto-grow
-                      v-model="technicalSheet.effects.cognitif.describe[item]"
+                      v-model="technicalSheet.effects.cognitif.describe[item - 1]"
                       placeholder="Remplir la description ici."
                     />
                     <v-btn class="btnDelete" @click="deleteCognitifEffect(item)">X</v-btn>
@@ -83,12 +83,12 @@
                 <ul class="listNameEffect">
                   <li v-for="item in technicalSheet.effects.indesirable.counter" :key="item">
                     <h4>Effet n°{{ item }}</h4>
-                    <v-text-field placeholder="Nom de l'effet" :name="setName(effects[2], item)" v-model="technicalSheet.effects.indesirable.name[item]" />
+                    <v-text-field placeholder="Nom de l'effet" :name="setName(effects[2], item)" v-model="technicalSheet.effects.indesirable.name[item - 1]" />
                     <v-textarea
                       box
                       :name="setDescribeName(effects[2], item)"
                       auto-grow
-                      v-model="technicalSheet.effects.indesirable.describe[item]"
+                      v-model="technicalSheet.effects.indesirable.describe[item - 1]"
                       placeholder="Remplir la description ici."
                     />
                     <v-btn class="btnDelete" @click="deleteIndesirableEffect(item)">X</v-btn>
@@ -111,7 +111,7 @@
 
         <ul class="listUrlReference">
           <li v-for="item in technicalSheet.references.counter" :key="item">
-            <v-text-field placeholder="Entrez l'url ici" :name="setUrlName(item)" v-model="technicalSheet.references.urlTab[item]" />
+            <v-text-field placeholder="Entrez l'url ici" :name="setUrlName(item)" v-model="technicalSheet.references.urlTab[item - 1]" />
             <v-btn class="btnDelete" @click="deleteUrlReference(item)">X</v-btn>
           </li>
           <v-btn @click="addUrlReference">Ajout d'une référence</v-btn>
@@ -120,12 +120,32 @@
       </v-form>
 
     </div>
+
+    <div v-else class="container">
+      <TechnicalSheet :technical-sheet="this.technicalSheet" />
+      <v-radio-group v-model="technicalSheet.isFinish" :mandatory="false">
+        <v-container>
+          <v-layout>
+            <v-flex md=6>
+              <v-radio label="Sauvegarder temporairement la fiche technique" value="false" />
+            </v-flex>
+            <v-flex md=6>
+              <v-radio label="Valider la fiche technique" value="true" />
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-radio-group>
+    </div>
   </div>
 </template>
 <script>
+import TechnicalSheet from '../TechnicalSheet/TechnicalSheet'
 import axios from 'axios'
 export default {
   name: 'ExistantTSEdition',
+  components: {
+    TechnicalSheet
+  },
   props: {
     'tsobject': {
       type: Object,
@@ -172,21 +192,6 @@ export default {
   mounted () {
     // set technicalSheet object without counter
     this.technicalSheet = this.tsobject
-    // Set physic counter
-    this.technicalSheet.effects.physic.counter = this.tsobject.effects.physic.name.length
-    this.technicalSheet.effects.physic.name.unshift('')
-    this.technicalSheet.effects.physic.describe.unshift('')
-    // Set cognitif counter
-    this.technicalSheet.effects.cognitif.counter = this.tsobject.effects.cognitif.name.length
-    this.technicalSheet.effects.cognitif.name.unshift('')
-    this.technicalSheet.effects.cognitif.describe.unshift('')
-    // Set indesirable counter
-    this.technicalSheet.effects.indesirable.counter = this.tsobject.effects.indesirable.name.length
-    this.technicalSheet.effects.indesirable.name.unshift('')
-    this.technicalSheet.effects.indesirable.describe.unshift('')
-    // Set urlRef counter
-    this.technicalSheet.references.counter = this.tsobject.references.urlTab.length
-    this.technicalSheet.references.urlTab.unshift('')
   },
   methods: {
     addPhysicEffect () {

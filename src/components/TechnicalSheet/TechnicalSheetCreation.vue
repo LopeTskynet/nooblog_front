@@ -122,7 +122,7 @@
 
     </div>
     <div v-else class="container">
-      <TechnicalSheet :technical-sheet="this.technicalSheet" />
+      <TechnicalSheetPreview :technical-sheet="this.technicalSheet" />
       <v-radio-group v-model="technicalSheet.isFinish" :mandatory="false">
         <v-container>
           <v-layout>
@@ -147,12 +147,12 @@
   </div>
 </template>
 <script>
-import TechnicalSheet from './TechnicalSheet'
+import TechnicalSheetPreview from './TechnicalSheetPreview'
 import axios from 'axios'
 export default {
   name: 'TechnicalSheetCreation',
   components: {
-    TechnicalSheet
+    TechnicalSheetPreview
   },
   data: () => ({
     preview: false,
