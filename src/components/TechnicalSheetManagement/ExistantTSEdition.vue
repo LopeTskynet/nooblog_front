@@ -116,7 +116,6 @@
           </li>
           <v-btn @click="addUrlReference">Ajout d'une référence</v-btn>
         </ul>
-        <v-btn @click="validModification">Valider la modification</v-btn>
       </v-form>
 
     </div>
@@ -136,6 +135,13 @@
         </v-container>
       </v-radio-group>
     </div>
+    <v-btn @click="showPreview">
+      <span v-if="!this.preview">Show the preview</span>
+      <span v-else>Back to the editor</span>
+    </v-btn>
+    <v-btn v-if="this.preview" @click="validModification">
+      Save the technicalsheet
+    </v-btn>
   </div>
 </template>
 <script>
@@ -247,6 +253,13 @@ export default {
       }).catch(err => {
         console.error(err)
       })
+    },
+    showPreview () {
+      if (this.preview === false) {
+        this.preview = true
+      } else {
+        this.preview = false
+      }
     }
   }
 }
