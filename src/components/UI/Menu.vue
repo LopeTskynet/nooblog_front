@@ -11,7 +11,7 @@
           <li><a href="#"><i class="ti-bookmark-alt" /><router-link :to="{name:'LastTechnicalSheet'}">Dernières fiches techniques</router-link></a></li>
           <li><a href="#"><i class="ti-archive" />Articles par effets</a></li>
           <li><a href="#"><i class="ti-book" />Tous les articles</a></li>
-          <li><a href="#"><i class="ti-hand-point-right" />Tout ce que vous devez savoir</a></li>
+          <li><a href="#"><i class="ti-hand-point-right" /><router-link :to="{name:'AllThingsToKnow'}">Tout ce que vous devez savoir</router-link></a></li>
           <li><a href="#"><i class="ti-info-alt" />F.A.Q</a></li>
           <li><a href="#"><i class="ti-user" />Rejoindre l'équipe ?</a></li>
         </ul>

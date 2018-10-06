@@ -2,10 +2,10 @@
   <div id="inProgressArticle">
     <v-container grid-list-md v-if="!this.modification">
       <v-layout row wrap>
-        <v-flex xs12 md4 v-for="article in articleList" :key="article._id">
+        <v-flex xs12 v-for="article in articleList" :key="article._id">
           <div class="cardArticle">
-            <h2>{{ article.title }}</h2>
-            <v-btn @click="showArticle(article)">Manage</v-btn>
+            <ArticleCard :article="article" />
+            <v-btn class="btnManage" @click="showArticle(article)">Manage</v-btn>
           </div>
 
         </v-flex>
@@ -39,11 +39,13 @@
 </template>
 <script>
 import axios from 'axios'
+import ArticleCard from './ArticleCard'
 import ArticleModification from '@/components/ArticleManagement/ArticleModification'
 export default {
   name: 'InProgressArticle',
   components: {
-    ArticleModification
+    ArticleModification,
+    ArticleCard
   },
   data: () => ({
     articleList: [],
@@ -95,8 +97,12 @@ export default {
 </script>
 <style scoped>
 #app #inProgressArticle .cardArticle{
-  box-shadow:2px 2px 2px 2px hsla(38,16%,76%,.5);
-  border-radius:6px;
+  position: relative;
+}
+#app #inProgressArticle .cardArticle .btnManage{
+  position: absolute;
+  top: 28%;
+  right: 10px;
 }
 .popupTheme{
   background:white;

@@ -44,6 +44,23 @@
           </v-expansion-panel>
 
         </li>
+
+        <li>
+          <v-expansion-panel expand>
+            <v-expansion-panel-content>
+              <div slot="header">User things to know</div>
+              <v-card>
+                <v-card-text class="paddingLeft">
+                  <router-link :to="{name:'AllThingsToKnowCreation'}">Création</router-link>
+                </v-card-text>
+                <v-card-text class="paddingLeft">
+                  <router-link :to="{name:'AllThingsToKnowEditable'}">editer une question</router-link>
+                </v-card-text>
+              </v-card>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+
+        </li>
       </ul>
     </div>
   </div>
