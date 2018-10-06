@@ -126,7 +126,7 @@ export default new Router({
       component: AllThingsToKnowEditable
     },
     {
-      path:'/faq',
+      path: '/faq',
       name: 'Faq',
       component: Faq
     }
