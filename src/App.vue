@@ -133,6 +133,7 @@ export default {
       this.$store.commit('setPseudo', '')
       this.$store.commit('setEmail', '')
       this.$store.commit('setToken', '')
+      this.$store.commit('setRole', '')
       this.$store.commit('setIsConnected', false)
       sessionStorage.clear()
     },
