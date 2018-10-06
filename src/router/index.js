@@ -20,6 +20,7 @@ import ExistantTechnicalSheet from '@/components/TechnicalSheetManagement/Exista
 import AllThingsToKnow from '@/components/InfoToUser/AllThingsToKnow'
 import AllThingsToKnowCreation from '@/components/InfoToUserManagement/AllThingsToKnowCreation'
 import AllThingsToKnowEditable from '@/components/InfoToUserManagement/AllThingsToKnowEditable'
+import Faq from '@/components/InfoToUser/Faq'
 Vue.use(Router)
 
 export default new Router({
@@ -123,6 +124,11 @@ export default new Router({
       path: '/tout-ce-que-vous-devez-savoir/editable',
       name: 'AllThingsToKnowEditable',
       component: AllThingsToKnowEditable
+    },
+    {
+      path:'/faq',
+      name: 'Faq',
+      component: Faq
     }
   ]
 })

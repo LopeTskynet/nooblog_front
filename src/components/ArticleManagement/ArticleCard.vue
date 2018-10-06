@@ -85,6 +85,9 @@ export default {
   border-radius:6px;
   box-shadow:0 2px 2px hsla(38,16%,76%,.5);
 }
+#app #ArticleCard:hover{
+  cursor: pointer;
+}
 #app #ArticleCard .subtitle {
   color: grey;
   font-style: italic;
