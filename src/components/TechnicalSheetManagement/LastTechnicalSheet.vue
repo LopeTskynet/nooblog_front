@@ -18,6 +18,7 @@
 import axios from 'axios'
 import TechnicalSheetCard from './TechnicalSheetCard'
 import TechnicalSheet from '../TechnicalSheet/TechnicalSheet'
+const backend = require('../../../config/backend.conf')
 export default {
   name: 'LastTechnicalSheet',
   components: {
@@ -31,7 +32,7 @@ export default {
   }),
   mounted () {
     console.log('test')
-    axios.post('http://localhost:3000/api/v1/technicalsheet/getfinish', {
+    axios.post('http://' + backend.host + ':' + backend.port + '/api/v1/technicalsheet/getfinish', {
     })
       .then(response => {
         console.log(response.data[0].name)

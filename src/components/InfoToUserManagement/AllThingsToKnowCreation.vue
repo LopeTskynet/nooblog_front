@@ -25,6 +25,7 @@
 </template>
 <script>
 import axios from 'axios'
+const backend = require('../../../config/backend.conf')
 export default {
   name: 'AllThingsToKnowCreation',
   data: () => ({
@@ -35,7 +36,7 @@ export default {
     validForm () {
       console.log('validForm')
       console.log(this.question)
-      axios.post('http://localhost:3000/api/v1/userthings/thingstoknow/create', {
+      axios.post('http://' + backend.host + ':' + backend.port + '/api/v1/userthings/thingstoknow/create', {
         token: this.$store.getters.getToken,
         pseudo: this.$store.getters.getPseudo,
         question: this.question,

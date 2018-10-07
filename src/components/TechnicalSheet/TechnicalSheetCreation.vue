@@ -149,6 +149,7 @@
 <script>
 import TechnicalSheetPreview from './TechnicalSheetPreview'
 import axios from 'axios'
+const backend = require('../../../config/backend.conf')
 export default {
   name: 'TechnicalSheetCreation',
   components: {
@@ -240,7 +241,7 @@ export default {
       }
     },
     sendFormToBackEnd () {
-      axios.post('http://localhost:3000/api/v1/technicalsheet/create', {
+      axios.post('http://' + backend.host + ':' + backend.port + '/api/v1/technicalsheet/create', {
         technicalsheet: this.technicalSheet
       }).then(response => {
         console.log(response)

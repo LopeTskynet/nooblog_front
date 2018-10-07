@@ -19,6 +19,7 @@
 import axios from 'axios'
 import ArticleCard from './ArticleCard'
 import Article from '../Article/Article'
+const backend = require('../../../config/backend.conf')
 export default {
   name: 'LastArticle',
   components: {
@@ -31,7 +32,7 @@ export default {
     showArticle: 'false'
   }),
   mounted () {
-    axios.post('http://localhost:3000/api/v1/article/all', {
+    axios.post('http://' + backend.host + ':' + backend.port + '/api/v1/article/all', {
 
     }).then(response => {
       response.data.forEach(e => {

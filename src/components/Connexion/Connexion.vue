@@ -56,6 +56,7 @@
 
 <script>
 import axios from 'axios'
+const backend = require('../../../config/backend.conf')
 export default {
   data: () => ({
     valid: true,
@@ -72,7 +73,7 @@ export default {
       if (this.$refs.form.validate()) {
         console.log(this.name)
         console.log(this.password)
-        axios.post('http://localhost:3000/api/v1/users/connection', {
+        axios.post('http://' + backend.host + ':' + backend.port + '/api/v1/users/connection', {
           pseudo: this.name,
           password: this.password
         }).then(response => {
@@ -102,7 +103,7 @@ export default {
       }
     },
     submit2 () {
-      axios.post('http://localhost:3000/api/v1/users/connection', {
+      axios.post('http://' + backend.host + ':' + backend.port + '/api/v1/users/connection', {
         pseudo: 'test',
         password: 'testtest'
       }).then(response => {

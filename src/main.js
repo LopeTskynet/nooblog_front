@@ -3,7 +3,6 @@
 import Vue from 'vue'
 import router from './router'
 import Vuetify from 'vuetify'
-// import colors from 'vuetify/es5/util/colors'
 import App from './App'
 import VueCookies from 'vue-cookies'
 import 'vuetify/dist/vuetify.min.css'
@@ -12,7 +11,6 @@ import Vuex from 'vuex'
 import store from './Store/Store'
 import wysiwyg from 'vue-wysiwyg'
 import 'vue-wysiwyg/dist/vueWysiwyg.css'
-// import './components/style/main.style'
 Vue.use(Vuetify, {
   theme: {
     primary: '#5e35b1', // $deep-purple.darken-1
