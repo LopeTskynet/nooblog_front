@@ -75,6 +75,7 @@
 
 <script>
 import axios from 'axios'
+const backend = require('../../../config/backend.conf')
 export default {
   name: 'Inscription',
   data: () => ({
@@ -111,7 +112,7 @@ export default {
     submit () {
       if (this.$refs.form.validate()) {
         if (this.password === this.passwordVerif) {
-          axios.post('http://localhost:3000/api/v1/users', {
+          axios.post('http://' + backend.host + ':' + backend.port + '/api/v1/users', {
             pseudo: this.pseudo,
             password: this.password,
             email: this.email,

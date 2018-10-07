@@ -147,6 +147,7 @@
 <script>
 import TechnicalSheet from '../TechnicalSheet/TechnicalSheet'
 import axios from 'axios'
+const backend = require('../../../config/backend.conf')
 export default {
   name: 'ExistantTSEdition',
   components: {
@@ -243,7 +244,7 @@ export default {
     validModification () {
       console.log(this.technicalSheet.references.urlTab)
       console.log(this.technicalSheet.effects.physic.name)
-      axios.post('http://localhost:3000/api/v1/technicalsheet/update', {
+      axios.post('http://' + backend.host + ':' + backend.port + '/api/v1/technicalsheet/update', {
         technicalsheet: this.technicalSheet,
         id: this.tsobject._id,
         token: this.$store.getters.getToken,

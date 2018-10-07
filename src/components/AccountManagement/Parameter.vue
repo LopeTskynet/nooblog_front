@@ -82,6 +82,7 @@
 </template>
 <script>
 import axios from 'axios'
+const backend = require('../../../config/backend.conf')
 export default {
   name: 'Parameter',
   data: () => ({
@@ -110,7 +111,7 @@ export default {
       }, 1000)
     },
     updateData () {
-      axios.put('http://localhost:3000/api/v1/users/update/', {
+      axios.put('http://' + backend.host + ':' + backend.port + '/api/v1/users/update/', {
         pseudo: this.account.pseudo,
         token: this.$store.getters.getToken,
         account: this.account

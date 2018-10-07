@@ -93,6 +93,7 @@ import theme from './theme'
 import axios from 'axios'
 import Menu from '@/components/UI/Menu'
 import MenuAdmin from '@/components/UI/MenuAdmin'
+const backend = require('../config/backend.conf')
 Vue.use(Vuetify, theme)
 export default {
   name: 'App',
@@ -112,7 +113,7 @@ export default {
       console.log('test store app firstname:' + this.$store.getters.getFirstName)
       console.log('test store app lastname:' + this.$store.getters.getLastName)
       console.log('test store app token:' + this.$store.getters.getToken)
-      axios.post('http://localhost:3000/api/v1/users/isconnected', {
+      axios.post('http://' + backend.host + ':' + backend.port + '/api/v1/users/isconnected', {
         pseudo: this.$store.getters.getPseudo,
         token: this.$store.getters.getToken
       })

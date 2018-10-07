@@ -23,6 +23,7 @@
 </template>
 <script>
 import axios from 'axios'
+const backend = require('../../../config/backend.conf')
 export default {
   name: 'AllThingsToKnowModification',
   props: {
@@ -37,7 +38,7 @@ export default {
   methods: {
     saveIntoBdd  () {
       console.log(this.thing.answer)
-      axios.post('http://localhost:3000/api/v1/userthings/thingstoknow/update', {
+      axios.post('http://' + backend.host + ':' + backend.port + '/api/v1/userthings/thingstoknow/update', {
         pseudo: this.$store.getters.getPseudo,
         token: this.$store.getters.getToken,
         thing: this.thing

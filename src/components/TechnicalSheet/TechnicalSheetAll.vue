@@ -7,6 +7,7 @@
 <script>
 import axios from 'axios'
 import TechnicalSheet from './TechnicalSheet'
+const backend = require('../../../config/backend.conf')
 export default {
   components: {
     TechnicalSheet
@@ -15,7 +16,7 @@ export default {
     technicalSheetList: []
   }),
   mounted () {
-    axios.get('http://localhost:3000/api/v1/technicalsheet/getall', {
+    axios.get('http://' + backend.host + ':' + backend.port + '/api/v1/technicalsheet/getall', {
 
     }).then(response => {
       response.data.forEach(e => {

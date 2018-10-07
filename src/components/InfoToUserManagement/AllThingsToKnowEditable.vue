@@ -28,6 +28,7 @@
 <script>
 import axios from 'axios'
 import AllThingsToKnowModification from './AllThingsToKnowModification'
+const backend = require('../../../config/backend.conf')
 export default {
   name: 'AllThingsToKnowEditable',
   components: {
@@ -39,7 +40,7 @@ export default {
     modification: false
   }),
   mounted () {
-    axios.post('http://localhost:3000/api/v1/userthings/thingstoknow/getall', {
+    axios.post('http://' + backend.host + ':' + backend.port + '/api/v1/userthings/thingstoknow/getall', {
     })
       .then(response => {
         console.log('test2')

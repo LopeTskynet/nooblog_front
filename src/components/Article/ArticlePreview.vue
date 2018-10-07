@@ -29,6 +29,7 @@
 
 <script>
 import axios from 'axios'
+const backend = require('../../../config/backend.conf')
 export default {
   name: 'ArticlePreview',
   props: {
@@ -56,7 +57,7 @@ export default {
   methods: {
     submit () {
       if (this.article && this.isExist === '') {
-        axios.post('http://localhost:3000/api/v1/article/create', {
+        axios.post('http://' + backend.host + ':' + backend.port + '/api/v1/article/create', {
           article: this.article,
           title: this.title,
           tag: this.tag,
@@ -73,7 +74,7 @@ export default {
           console.error(err)
         })
       } else if (this.article) {
-        axios.post('http://localhost:3000/api/v1/article/modification', {
+        axios.post('http://' + backend.host + ':' + backend.port + '/api/v1/article/modification', {
           article: this.article,
           title: this.title,
           tag: this.tag,

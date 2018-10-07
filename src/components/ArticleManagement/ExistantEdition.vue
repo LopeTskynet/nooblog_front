@@ -40,6 +40,7 @@
 import axios from 'axios'
 import ArticleCard from './ArticleCard'
 import ArticleModification from '@/components/ArticleManagement/ArticleModification'
+const backend = require('../../../config/backend.conf')
 export default {
   name: 'ExistantEdition',
   components: {
@@ -53,7 +54,7 @@ export default {
     dialog: false
   }),
   mounted () {
-    axios.post('http://localhost:3000/api/v1/article/all', {
+    axios.post('http://' + backend.host + ':' + backend.port + '/api/v1/article/all', {
     }).then(response => {
       response.data.forEach(e => {
         this.articleList.push(e)
@@ -75,7 +76,7 @@ export default {
       console.log(this.$store.getters.getPseudo)
       console.log(this.$store.getters.getToken)
       console.log(this.article._id)
-      axios.post('http://localhost:3000/api/v1/article/delete', {
+      axios.post('http://' + backend.host + ':' + backend.port + '/api/v1/article/delete', {
         pseudo: this.$store.getters.getPseudo,
         token: this.$store.getters.getToken,
         id: this.article._id

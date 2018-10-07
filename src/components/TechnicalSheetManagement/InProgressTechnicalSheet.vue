@@ -24,6 +24,7 @@
 <script>
 import axios from 'axios'
 import ExistantTSEdition from '@/components/TechnicalSheetManagement/ExistantTSEdition'
+const backend = require('../../../config/backend.conf')
 export default {
   name: 'InProgressTechnicalSheet',
   components: {
@@ -35,7 +36,7 @@ export default {
     modification: false
   }),
   mounted () {
-    axios.post('http://localhost:3000/api/v1/technicalsheet/inprogress', {
+    axios.post('http://' + backend.host + ':' + backend.port + '/api/v1/technicalsheet/inprogress', {
       pseudo: this.$store.getters.getPseudo,
       token: this.$store.getters.getToken
     }).then(response => {
