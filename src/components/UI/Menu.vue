@@ -7,13 +7,13 @@
           Nooblog
         </h2>
         <ul class="headline">
-          <li><a href="#"><router-link :to="{name:'LastArticle'}"><i class="ti-write" />Dernier articles</router-link></a></li>
-          <li><a href="#"><i class="ti-bookmark-alt" /><router-link :to="{name:'LastTechnicalSheet'}">Dernières fiches techniques</router-link></a></li>
+          <li><router-link :to="{name:'LastArticle'}"><i class="ti-write" />Dernier articles</router-link></li>
+          <li><i class="ti-bookmark-alt" /><router-link :to="{name:'LastTechnicalSheet'}">Dernières fiches techniques</router-link></li>
           <!-- <li><a href="#"><i class="ti-archive" />Articles par effets</a></li> -->
-          <li><a href="#"><i class="ti-book" />Tous les articles</a></li>
-          <li><a href="#"><i class="ti-hand-point-right" /><router-link :to="{name:'AllThingsToKnow'}">Tout ce que vous devez savoir</router-link></a></li>
-          <li><a href="#"><i class="ti-info-alt" /><router-link :to="{name:'Faq'}">F.A.Q</router-link></a></li>
-          <li><a href="#"><i class="ti-user" />Rejoindre l'équipe ?</a></li>
+          <li><i class="ti-book" />Tous les articles</li>
+          <li><i class="ti-hand-point-right" /><router-link :to="{name:'AllThingsToKnow'}">Tout ce que vous devez savoir</router-link></li>
+          <li><i class="ti-info-alt" /><router-link :to="{name:'Faq'}">F.A.Q</router-link></li>
+          <li><i class="ti-user" />Rejoindre l'équipe ?</li>
         </ul>
       </div>
     </div>
@@ -31,15 +31,11 @@ export default {
 #app .navBarLeft{
   text-align:left;
   box-shadow:0 2px 2px hsla(38,16%,76%,.5);
-  position:fixed;
   height:100%;
-  background: url("../../../static/img/UI/sidebar.jpg");
+  /*background: url("../../../static/img/UI/sidebar.jpg");*/
 }
 #app .navBarLeft .backgroundBlack{
   padding:15px;
-  background:black;
-  opacity:0.77;
-  height:100%;
 }
 #app .navBarLeft ul{
   list-style:none;
@@ -51,21 +47,18 @@ export default {
   padding-top:10px;
   padding-bottom:10px;
   font-size:12px;
-  text-transform: uppercase;
+  color:rgb(28, 130, 255);
+  /* text-transform: uppercase; */
 }
 #app .navBarLeft ul li i{
-  font-size:24px;
-  font-weight:bold;
+  font-size:18px;
   margin-right: 15px;
   float:left;
-  height:30px;
-  width:30px;
-  color:rgba(255, 255, 255, 0.7);
+  line-height:30px;
 }
 #app .navBarLeft ul li a{
-  line-height:30px;
-  color:rgb(255, 255, 255);
   text-decoration:none;
+  color:rgb(28, 130, 255);
 }
 #app .navBarLeft .movingArrow{
   border-right: 17px solid #f4f3ef;

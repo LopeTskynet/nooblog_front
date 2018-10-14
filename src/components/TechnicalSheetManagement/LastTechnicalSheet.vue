@@ -31,11 +31,9 @@ export default {
     showTechnicalsheet: 'false'
   }),
   mounted () {
-    console.log('test')
     axios.post('http://' + backend.host + ':' + backend.port + '/api/v1/technicalsheet/getfinish', {
     })
       .then(response => {
-        console.log(response.data[0].name)
         response.data.forEach(item => {
           this.technicalsheetTab.push(item)
         })

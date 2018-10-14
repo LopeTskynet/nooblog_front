@@ -1,92 +1,84 @@
 <template>
   <div id="app" data-app light>
     <header>
-      <v-container grid-list-md class="noPadding">
-        <v-layout row wrap class="backgroundNavbar">
-          <v-flex xs12 md6>
-            <h1 class="title">Nooblog</h1>
-          </v-flex>
-          <v-flex xs12 md6>
-            <ul>
-              <li v-if="this.$store.getters.getIsConnected && this.$store.getters.getRole === 'admin'">
-                <v-btn color="blue darken-2" @click="setMenuAdmin">
-                  pannel d'administration
-                </v-btn>
-              </li>
+      <div class="hidden-md-and-up mobileMenu">
+        <v-icon>menu</v-icon>
+      </div>
+      <div class="hidden-sm-and-down desktopMenu" :class="changeDesktopMenu">
+        <img src="../static/img/UI/medicine_title.png" alt="icon drugs">
+        <h1 class="title" v-if="this.changeDesktopMenu == ''">Nooblog</h1>
+        <p v-if="this.changeDesktopMenu == ''">
+          Interface du menu
+        </p>
+        <v-icon v-if="this.changeDesktopMenu == ''" @click="reduceMenuDesktop()">chevron_left</v-icon>
+        <v-icon v-if="this.changeDesktopMenu == 'desktopMenuSmall'" @click="openMenuDesktop()">chevron_right</v-icon>
+      </div>
 
-              <li class="title" v-if="!this.$store.getters.getIsConnected">
-                <router-link :to="{name:'Connexion'}">
-                  <v-btn class="btnHeader">connexion</v-btn>
-                </router-link>
-              </li>
+      <ul>
+        <li v-if="this.$store.getters.getIsConnected && this.$store.getters.getRole === 'admin'">
+          <v-btn color="blue darken-2" @click="setMenuAdmin">
+            pannel d'administration
+          </v-btn>
+        </li>
 
-              <li class="title" v-else>
+        <li class="title" v-if="!this.$store.getters.getIsConnected">
+          <router-link :to="{name:'Connexion'}">
+            <v-btn class="btnHeader">connexion</v-btn>
+          </router-link>
+        </li>
 
-                <v-menu offset-y>
-                  <v-btn slot="activator" class="btnHeader" color="blue darken-2">
-                    Welcome {{ this.$store.getters.getPseudo }}
-                  </v-btn>
-                  <v-list>
-                    <v-list-tile @click="mockButton">
-                      <v-list-tile-title>
-                        <router-link :to="{name:'Parameter'}">
-                          <v-icon dark>account_circle</v-icon> Parametre
-                        </router-link>
-                      </v-list-tile-title>
-                    </v-list-tile>
-                    <v-list-tile @click="disconnect()">
-                      <v-list-tile-title>
-                        <v-icon dark>power_settings_new</v-icon> Se déconnecter
-                      </v-list-tile-title>
-                    </v-list-tile>
-                  </v-list>
-                </v-menu>
+        <li class="title" v-else>
 
-              </li>
+          <v-menu offset-y>
+            <v-btn slot="activator" class="btnHeader" color="blue darken-2">
+              Welcome {{ this.$store.getters.getPseudo }}
+            </v-btn>
+            <v-list>
+              <v-list-tile @click="mockButton">
+                <v-list-tile-title>
+                  <router-link :to="{name:'Parameter'}">
+                    <v-icon dark>account_circle</v-icon> Parametre
+                  </router-link>
+                </v-list-tile-title>
+              </v-list-tile>
+              <v-list-tile @click="disconnect()">
+                <v-list-tile-title>
+                  <v-icon dark>power_settings_new</v-icon> Se déconnecter
+                </v-list-tile-title>
+              </v-list-tile>
+            </v-list>
+          </v-menu>
 
-              <li class="title" v-if="!this.$store.getters.getIsConnected">
-                <router-link :to="{name:'Inscription'}">
-                  <v-btn class="btnHeader">
-                    inscription
-                  </v-btn>
-                </router-link>
-              </li>
-            </ul>
-          </v-flex>
-        </v-layout>
+        </li>
 
-      </v-container>
+        <li class="title" v-if="!this.$store.getters.getIsConnected">
+          <router-link :to="{name:'Inscription'}">
+            <v-btn class="btnHeader">
+              inscription
+            </v-btn>
+          </router-link>
+        </li>
+      </ul>
     </header>
 
-    <v-container grid-list-md class="noPadding">
-
-      <v-layout row wrap>
-
-        <v-flex v-if="!menuAdmin" md2>
+    <div>
+      <div id="leftContent" :class="leftBarDown">
+        <div v-if="!menuAdmin" class="hidden-xs-and-down">
           <Menu />
-        </v-flex>
-
-        <v-flex v-else md2>
+        </div>
+        <div v-else class="hidden-xs-and-down backgroundMain">
           <MenuAdmin />
-        </v-flex>
-
-        <v-flex md8>
-          <router-view/>
-        </v-flex>
-
-        <v-flex md2>
-          <FicheTechnique/>
-        </v-flex>
-
-      </v-layout>
-
-    </v-container>
+        </div>
+      </div>
+      <div id="rightcontent" :class="mainContentFull">
+        <router-view style="width:100%"/>
+      </div>
+    </div>
 
   </div>
 </template>
 
 <script>
-import FicheTechnique from '@/components/Article/FicheTechnique'
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import theme from './theme'
@@ -98,13 +90,15 @@ Vue.use(Vuetify, theme)
 export default {
   name: 'App',
   components: {
-    'FicheTechnique': FicheTechnique,
     'Menu': Menu,
     'MenuAdmin': MenuAdmin
   },
   data: () => ({
     arrow: 'movingArrowMenu',
-    menuAdmin: false
+    menuAdmin: false,
+    changeDesktopMenu: '',
+    leftBarDown: '',
+    mainContentFull: ''
   }),
   methods: {
     testStore () {
@@ -144,6 +138,16 @@ export default {
       } else {
         this.menuAdmin = false
       }
+    },
+    reduceMenuDesktop () {
+      this.changeDesktopMenu = 'desktopMenuSmall'
+      this.mainContentFull = 'rightBarFullContent'
+      this.leftBarDown = 'leftBarDown'
+    },
+    openMenuDesktop () {
+      this.changeDesktopMenu = ''
+      this.mainContentFull = ''
+      this.leftBarDown = ''
     }
   },
   mounted () {
@@ -165,21 +169,74 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  /* color: #2c3e50; */
   margin-left:auto;
   margin-right:auto;
   text-align:center;
 }
 #app header{
-  background: rgb(60,141,188);
-  min-height:60px;
+  background: linear-gradient(154deg,#008fe2 0,#00b29c 100%);
+  height:78px;
+}
+#app header .mobileMenu{
+  float:left;
+  position:relative;
+  height:78px;
+}
+#app header .mobileMenu i{
+  position:absolute;
+  left: 10px;
+  top:12%;
+  font-size:60px;
+  color:rgba(255,255,255,0.7);
+}
+#app header .desktopMenu{
+  float:left;
+  height:78px;
+  width:260px;
+  padding-top: 12px;
+  padding-left:10px;
+  text-align:left;
+  color:white;
+  background-color:rgba(255, 255, 255, 0.1);
+  position:relative;
+  transition: width 1s;
+}
+#app header .desktopMenu h1{
+  position:absolute;
+  left:80px;
+  top: 20px;
+  font-weight:bold;
+  font-size:16px !important;
+}
+#app header .desktopMenu p{
+  position:absolute;
+  left: 80px;
+  top:40px;
+  font-size:12px;
+  color:rgba(255,255,255,.5);
+}
+#app header .desktopMenu i{
+  position:absolute;
+  top:36%;
+  right:10px;
+  color:rgba(255,255,255,.5);
+}
+#app header .desktopMenu i:hover{
+  background-color:rgba(255,255,255,.1);
+  color:rgba(255,255,255,.85);
+  cursor:pointer;
+}
+#app header .desktopMenuSmall{
+  width:120px;
 }
 #app header a{
   text-decoration: none;
   color: black;
 }
-#app .noPadding{
+#app .mainContent{
   padding:0px;
+  clear:both;
 }
 #app header .backgroundNavbar h1{
   line-height:50px !important;
@@ -196,6 +253,24 @@ export default {
   color:white;
   text-decoration:none;
 }
+/* MAINCONTENT START */
+#app #leftContent{
+  display:inline-block;
+  width:260px;
+  transition: 1s;
+}
+#app .leftBarDown{
+  display:none !important;
+}
+#app #rightcontent{
+  display:inline-block;
+  vertical-align:top;
+  width: calc(100% - 264px);
+}
+#app .rightBarFullContent{
+  width: 100% !important;
+}
+/* MAINCONTENT END */
 #app .v-list{
   background:rgb(25, 118, 210,0.8);
   color:white;
@@ -212,7 +287,9 @@ export default {
   background:white;
   padding: 5px 10px 5px 10px;
 }
-
+#app .backgroundMain{
+  background:rgb(250, 252, 254);
+}
 /* CSS GLOBAL */
 #app li {
   list-style:none;
